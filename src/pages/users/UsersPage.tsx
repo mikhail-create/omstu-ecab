@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { userService } from '../../_services/user.service'
 
 function UsersPage() {
-  return (
-    <div>UsersPage</div>
-  )
+    
+    return (
+        <div>Users</div>
+    )
 }
 
 export default UsersPage

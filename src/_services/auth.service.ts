@@ -5,18 +5,14 @@ export const authService = {
 }
 
 function login(name: string, password: string) {
-    console.log(password);
     axios.post('http://localhost:5000/auth/login', {
         name: name,
         password: password
     })
         .then(function (response) {
-            axios.get(
-                'http://localhost:5000/users',
-                { headers: { Authorization: `Bearer ${response.data.token}` } },
-            ).then(function (response) {
-                console.log(response.data)
-            })
+           console.log(response);
+           localStorage.setItem('token', response.data.token)
+           window.location.replace('http://localhost:3000/users');
         })
         .catch(function (error) {
             console.log(error);

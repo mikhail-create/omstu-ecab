@@ -1,7 +1,13 @@
 import axios from "axios";
 
 export const authService = {
-    login
+    login,
+    logout
+}
+
+function logout() {
+    localStorage.removeItem('token');
+    window.location.replace('http://localhost:3000/login');
 }
 
 function login(name: string, password: string) {

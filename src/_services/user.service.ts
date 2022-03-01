@@ -1,20 +1,17 @@
 import axios from "axios";
+import { handleResponse } from "../_helpers/handle-response";
 
 export const userService = {
-    getUsers
+    getAll,
 }
 
-function getUsers () {
+function getAll() {
     const token = localStorage.getItem('token');
-    axios.get(
-        'http://localhost:5000/users',
-        { headers: { Authorization: `Bearer ${token}` } },
-    )
-    .then(function (response) {
-        return response.data
-    })
-    .catch(function (error) {
-        console.log(error);
-        return error
-    });
+    const requestOptions = { method: 'GET', headers: { Authorization: `Bearer ${token}` } };
+    return fetch('http://localhost:5000/users', requestOptions)
+        .then(handleResponse)
+        .catch(function (error) {
+            console.log(error);
+            return error
+        });
 }

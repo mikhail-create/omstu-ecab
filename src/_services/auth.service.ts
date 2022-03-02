@@ -10,9 +10,9 @@ function logout() {
     window.location.replace('http://localhost:3000/login');
 }
 
-function login(name: string, password: string) {
+function login(email: string, password: string) {
     axios.post('http://localhost:5000/auth/login', {
-        name: name,
+        email: email,
         password: password
     })
         .then(function (response) {

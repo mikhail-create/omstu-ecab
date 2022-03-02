@@ -7,15 +7,15 @@ function LoginPage() {
     return (
         <div className={styles.login}>
             <Formik
-                initialValues={{ name: "", password: "" }}
+                initialValues={{ email: "", password: "" }}
                 onSubmit={(values) => {
-                    authService.login(values.name, values.password)
+                    authService.login(values.email, values.password)
                 }}
             >
                 <Form className={styles.form}>
                     <h1>Login</h1>
                     <div className={styles.input_container}>
-                        <Field name="name" type="text" />
+                        <Field name="email" type="email" />
                         <Field name="password" type="password" />
                     </div>
                     <button type="submit">Submit</button>

@@ -8,7 +8,6 @@ function UsersPage() {
     function getData() {
         userService.getAll().then(users => {
             setUsers({ users })
-            console.log(typeof users);
         });
         
         

@@ -5,7 +5,9 @@ export function handleResponse(response: { text: () => Promise<any>; ok: any; st
         const data = text && JSON.parse(text);
         if (!response.ok) {
             if ([401, 403].indexOf(response.status) !== -1) {
-                authService.logout()
+                if (window.location.pathname != '/login') {
+                    authService.logout()
+                }
             }
 
             const error = (data && data.message) || response.statusText;

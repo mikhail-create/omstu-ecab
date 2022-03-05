@@ -4,6 +4,7 @@ $dark-blue: #2a3142;
 $medium-dark-blue: lighten(#2a3142, 25%);
 $light-dark-blue: lighten(#2a3142, 65%);
 $blue: #3bafda;
+$error: #ff0000;
 
 .login {
     height: 100vh;
@@ -41,12 +42,12 @@ $blue: #3bafda;
     width: 340px;
 }
 
-input,
-button {
+.input__control,
+.form__button {
     letter-spacing: 1.3px;
 }
 
-input {
+.input__control {
     box-sizing: border-box;
     background: transparent;
     width: 90%;
@@ -59,11 +60,11 @@ input {
     caret-color: $blue;
 }
 
-input::placeholder {
+.input__control::placeholder {
     color: rgba(255, 255, 255, 0.25);
 }
 
-button {
+.form__button {
     background: lighten($dark-blue, 5%);
     border: none;
     border-radius: 30px;
@@ -78,7 +79,7 @@ button {
     transition: all 0.3s;
 }
 
-button:hover {
+.form__button:hover {
     background: $blue;
     box-shadow: 0px 5px 20px -3px rgba(0, 0, 0, 0.65);
 }
@@ -102,4 +103,12 @@ button:hover {
     &__item:hover {
         text-decoration: underline;
     }
+}
+
+.error {
+    border-bottom: 1px solid $error;
+}
+
+.alert {
+    color: $error;
 }

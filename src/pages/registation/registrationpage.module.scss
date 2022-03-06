@@ -40,6 +40,17 @@ $error: #ff0000;
     margin-bottom: 20px;
     margin-top: 30px;
     width: 340px;
+
+    &__icon {
+        position: absolute;
+        margin: 12px 0 0 8px;
+    }
+
+    &__field {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+    }
 }
 
 .input__control,
@@ -50,7 +61,7 @@ $error: #ff0000;
 .input__control {
     box-sizing: border-box;
     background: transparent;
-    width: 90%;
+    width: 100%;
     border: none;
     border-bottom: 1px solid $medium-dark-blue;
     color: $light-dark-blue;

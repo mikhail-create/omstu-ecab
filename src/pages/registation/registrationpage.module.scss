@@ -51,6 +51,11 @@ $error: #ff0000;
         display: flex;
         flex-direction: row;
     }
+
+    &__password {
+        margin-left: 310px;
+        cursor: pointer;
+    }
 }
 
 .input__control,

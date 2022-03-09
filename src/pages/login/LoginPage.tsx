@@ -1,18 +1,22 @@
-import { ErrorMessage, Field, Form, Formik } from 'formik'
+import { ErrorMessage, Field, Form, Formik, validateYupSchema } from 'formik'
 import React, { useState } from 'react'
-import { MdMail, MdPerson, MdVpnKey } from "react-icons/md"
+import { MdMail, MdVpnKey, MdRemoveRedEye } from "react-icons/md"
 import { authService } from '../../_services/auth.service'
 import styles from './loginpage.module.scss'
 
 function LoginPage() {
 
     const [status, setStatus] = useState("")
+    const required = (value: any) => (value ? undefined : setStatus("Email and password required"));
+    const [showPassword, showPasswrodStatus] = useState(Boolean)
+
 
     return (
         <div className={styles.login}>
             <Formik
                 initialValues={{ email: "", password: "" }}
                 onSubmit={(values) => {
+                    setStatus("")
                     authService.login(values.email, values.password)
                         .then(
                             user => {
@@ -33,11 +37,30 @@ function LoginPage() {
                     <div className={styles.input_container}>
                         <div className={styles.input_container__field}>
                             <MdMail className={styles.input_container__icon} size='20px' />
-                            <Field className={`${styles.input__control} ${status ? styles.error : ''}`} name="email" type="email" placeholder="Email" />
+                            <Field
+                                className={`${styles.input__control} ${status ? styles.error : ''}`}
+                                validate={required}
+                                name="email"
+                                type="email"
+                                placeholder="Email"
+                            />
                         </div>
                         <div className={styles.input_container__field}>
                             <MdVpnKey className={styles.input_container__icon} size='20px' />
-                            <Field className={`${styles.input__control} ${status ? styles.error : ''}`} name="password" type="password" placeholder="Password" />
+                            <Field
+                                className={`${styles.input__control} ${status ? styles.error : ''}`}
+                                validate={required}
+                                name="password"
+                                type={showPassword ? 'text' : 'password'}
+                                placeholder="Password"
+                            />
+                            <MdRemoveRedEye
+                                className={`${styles.input_container__icon} ${styles.input_container__password}`}
+                                size='20px'
+                                onClick={() => {
+                                    showPasswrodStatus(!showPassword)
+                                }}
+                            />
                         </div>
                     </div>
 

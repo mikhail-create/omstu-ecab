@@ -38,7 +38,7 @@ function registration(name: string, email: string, password: string) {
     return fetch('http://localhost:5000/auth/registration', requestOptions)
         .then(handleResponse)
         .then(user => {
-            localStorage.setItem('token', JSON.stringify(user));
+            localStorage.setItem('token', user.token);
             return user;
         });
 }
@@ -53,7 +53,7 @@ function login(email: string, password: string) {
     return fetch('http://localhost:5000/auth/login', requestOptions)
         .then(handleResponse)
         .then(user => {
-            localStorage.setItem('token', JSON.stringify(user));
+            localStorage.setItem('token', user.token);
             return user;
         });
 }

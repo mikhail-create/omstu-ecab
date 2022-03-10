@@ -1,10 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Dosis:300");
-
-$dark-blue: #2a3142;
-$medium-dark-blue: lighten(#2a3142, 25%);
-$light-dark-blue: lighten(#2a3142, 65%);
-$blue: #3bafda;
-$error: #ff0000;
+@import "../../styles/colors.scss";
 
 .login {
     height: 100vh;

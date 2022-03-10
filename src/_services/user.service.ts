@@ -7,11 +7,12 @@ export const userService = {
 
 function getAll() {
     const token = localStorage.getItem('token');
+    console.log(`Bearer ${token}`);
+    
     const requestOptions = { method: 'GET', headers: { Authorization: `Bearer ${token}` } };
     return fetch('http://localhost:5000/users', requestOptions)
         .then(handleResponse)
-        .catch(function (error) {
-            console.log(error);
-            return error
-        });
+        .then(user => {
+            return user;
+        })
 }

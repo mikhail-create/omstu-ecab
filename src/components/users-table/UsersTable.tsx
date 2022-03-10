@@ -2,18 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { userService } from '../../_services/user.service';
 import styles from './userstable.module.scss'
 
-const [users, setUsers] = useState()
-
 function UsersTable() {
-    
+
+    const [users, setUsers] = useState([])
     function getUsersData() {
         userService.getAll().then(response => {
-              const objectArray = Object.entries(response);
-              
-              objectArray.forEach(([key, value]) => {
-                console.log(key);
-                console.log(value); 
-              });
+            setUsers(response)
         });
     }
 
@@ -22,10 +16,21 @@ function UsersTable() {
     }, [])
 
     return (
-        <div className={styles.content}>
-            {
-            
-            }
+        <div className={styles.wrapper}>
+            <table className={styles.table}>
+                <tr id="head">
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Roles</th>
+                </tr>
+                {users && users.map((user: any) =>
+                    <tr key={user.id}>
+                        <td>{user.name}</td>
+                        <td>{user.email}</td>
+                        <td>{user.roles}</td>
+                    </tr>
+                )}
+            </table>
         </div>
     )
 }

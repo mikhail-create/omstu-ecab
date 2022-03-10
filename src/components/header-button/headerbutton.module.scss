@@ -1,0 +1,23 @@
+@import "../../styles/colors.scss";
+
+.button {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 15px;
+    padding-right: 15px;
+    cursor: pointer;
+    font-family: noto sans, sans-serif;
+    color: $light-dark-blue;
+    font-weight: 500;
+}
+
+.button:hover {
+    background-color: lighten($dark-blue, 10%);
+    transition: .5s;
+}
+
+.active {
+    background-color: lighten($dark-blue, 10%);
+}

@@ -1,0 +1,66 @@
+@import "../../styles/colors.scss";
+
+.card {
+    width: 960px;
+    height: fit-content;
+    margin-bottom: 20px;
+    border: 1px solid $light-dark-blue;
+    background-color: $white;
+    border-radius: 20px;
+
+    &_content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        &__title {
+            margin: 24px 16px 13px 16px;
+            font-size: 22px;
+            line-height: 26px;
+            font-weight: 700;
+        }
+
+        &__description {
+            margin: 0 16px 0 16px;
+            font-size: 17px;
+            line-height: 22px;
+            font-weight: 400;
+            color: $textSecondary;
+
+            > span > p {
+                margin-bottom: 10px;
+
+                > a {
+                    text-decoration: none;
+                    color: darken($blue, 15%);;
+                }
+            }
+        }
+    }
+
+    &_info {
+        display: flex;
+        justify-content: space-between;
+        margin: 15px 16px 20px 16px;
+        font-size: 15px;
+        line-height: 20px;
+        font-weight: 600;
+        color: $medium-dark-blue;
+
+        &__date {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+    }
+
+    .continue_read {
+        cursor: pointer;
+        font-weight: 600;
+        color: darken($blue, 15%);
+    }
+
+    .continue_read:hover {
+        text-decoration: underline;
+    }
+}

@@ -1,13 +1,19 @@
 import { ErrorMessage, Field, Form, Formik, validateYupSchema } from 'formik'
 import React, { useState } from 'react'
 import { MdMail, MdVpnKey, MdRemoveRedEye } from "react-icons/md"
+import { useNavigate } from 'react-router-dom'
+import { history } from '../../_helpers/history'
 import { authService } from '../../_services/auth.service'
 import styles from './loginpage.module.scss'
 
-function LoginPage() {
 
+function LoginPage() {
+    let navigate = useNavigate();
     const [status, setStatus] = useState("")
-    const required = (value: any) => (value ? undefined : setStatus("Email and password required"));
+    const [statusEmail, setStatusEmail] = useState("")
+    const [statusPassword, setStatusPassword] = useState("")
+    const requiredEmail = (value: any) => (!!!value ? setStatusEmail("Email required") : setStatusEmail(""));
+    const requiredPassword = (value: any) => (!!!value ? setStatusPassword("Password required") : setStatusPassword(""));
     const [showPassword, showPasswrodStatus] = useState(Boolean)
 
 
@@ -17,16 +23,17 @@ function LoginPage() {
                 initialValues={{ email: "", password: "" }}
                 onSubmit={(values) => {
                     setStatus("")
-                    authService.login(values.email, values.password)
+                    if (!!!statusEmail && !!!statusPassword) {
+                        authService.login(values.email, values.password)
                         .then(
                             user => {
-                                console.log(user);
-
+                                navigate("/news")
                             },
                             error => {
                                 setStatus(error)
                             }
                         );
+                    }
                 }}
             >
                 <Form className={styles.form}>
@@ -38,8 +45,8 @@ function LoginPage() {
                         <div className={styles.input_container__field}>
                             <MdMail className={styles.input_container__icon} size='20px' />
                             <Field
-                                className={`${styles.input__control} ${status ? styles.error : ''}`}
-                                validate={required}
+                                className={`${styles.input__control} ${status ? styles.error : ''} ${statusEmail ? styles.error : ''}`}
+                                validate={requiredEmail}
                                 name="email"
                                 type="email"
                                 placeholder="Email"
@@ -48,8 +55,8 @@ function LoginPage() {
                         <div className={styles.input_container__field}>
                             <MdVpnKey className={styles.input_container__icon} size='20px' />
                             <Field
-                                className={`${styles.input__control} ${status ? styles.error : ''}`}
-                                validate={required}
+                                className={`${styles.input__control} ${status ? styles.error : ''} ${statusPassword ? styles.error : ''}`}
+                                validate={requiredPassword}
                                 name="password"
                                 type={showPassword ? 'text' : 'password'}
                                 placeholder="Password"
@@ -78,6 +85,8 @@ function LoginPage() {
                             </a>
                         </span>
                         {status ? <div className={styles.alert}>{status}</div> : <br></br>}
+                        {statusEmail ? <div className={styles.alert}>{statusEmail}</div> : <br></br>}
+                        {statusPassword ? <div className={styles.alert}>{statusPassword}</div> : <br></br>}
                     </div>
                 </Form>
             </Formik>

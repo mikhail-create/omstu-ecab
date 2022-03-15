@@ -1,11 +1,13 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik'
 import React, { useState } from 'react'
 import { MdMail, MdPerson, MdRemoveRedEye, MdVpnKey } from 'react-icons/md'
+import { useNavigate } from 'react-router-dom'
 import { authService } from '../../_services/auth.service'
 import styles from './registrationpage.module.scss'
 
 function RegistrationPage() {
 
+    let navigate = useNavigate();
     const [status, setStatus] = useState("")
     const required = (value: any) => (value ? undefined : setStatus("User information required"));
     const [showPassword, showPasswrodStatus] = useState(Boolean)
@@ -19,8 +21,7 @@ function RegistrationPage() {
                     authService.registration(values.name, values.email, values.password)
                         .then(
                             user => {
-                                console.log(user);
-
+                                navigate("/news")
                             },
                             error => {
                                 setStatus(error)

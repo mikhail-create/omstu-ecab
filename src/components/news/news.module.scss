@@ -1,0 +1,14 @@
+@import "../../styles/colors.scss";
+
+.news {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-direction: column;
+   font-family: noto sans, sans-serif;
+
+   &_title {
+       margin-top: 10px;
+       margin-bottom: 20px;
+   }
+}

@@ -9,7 +9,12 @@ function RegistrationPage() {
 
     let navigate = useNavigate();
     const [status, setStatus] = useState("")
-    const required = (value: any) => (value ? undefined : setStatus("User information required"));
+    const [statusEmail, setStatusEmail] = useState("")
+    const [statusPassword, setStatusPassword] = useState("")
+    const [statusName, setStatusName] = useState("")
+    const requiredEmail = (value: any) => (!!value ? setStatusEmail("Email required") : setStatusEmail(""));
+    const requiredName = (value: any) => (!!value ? setStatusName("Name required") : setStatusName(""));
+    const requiredPassword = (value: any) => (!!!value ? setStatusPassword("Password required") : setStatusPassword(""));
     const [showPassword, showPasswrodStatus] = useState(Boolean)
 
     return (
@@ -18,15 +23,17 @@ function RegistrationPage() {
                 initialValues={{ name: "", email: "", password: "" }}
                 onSubmit={(values) => {
                     setStatus("")
-                    authService.registration(values.name, values.email, values.password)
-                        .then(
-                            user => {
-                                navigate("/news")
-                            },
-                            error => {
-                                setStatus(error)
-                            }
-                        );
+                    if (!!!statusEmail && !!!statusPassword) {
+                        authService.registration(values.name, values.email, values.password)
+                            .then(
+                                user => {
+                                    navigate("/news")
+                                },
+                                error => {
+                                    setStatus(error)
+                                }
+                            );
+                    }
                 }}
             >
                 <Form className={styles.form}>
@@ -38,9 +45,9 @@ function RegistrationPage() {
                         <div className={styles.input_container__field}>
                             <MdPerson className={styles.input_container__icon} size='20px' />
                             <Field
-                                className={`${styles.input__control} ${status ? styles.error : ''}`}
+                                className={`${styles.input__control} ${status ? styles.error : ''} ${statusName ? styles.error : ''}`}
                                 name="name"
-                                validate={required}
+                                validate={requiredName}
                                 type="text"
                                 placeholder="Name"
                             />
@@ -48,9 +55,9 @@ function RegistrationPage() {
                         <div className={styles.input_container__field}>
                             <MdMail className={styles.input_container__icon} size='20px' />
                             <Field
-                                className={`${styles.input__control} ${status ? styles.error : ''}`}
+                                className={`${styles.input__control} ${status ? styles.error : ''} ${statusEmail ? styles.error : ''}`}
                                 name="email"
-                                validate={required}
+                                validate={requiredEmail}
                                 type="email"
                                 placeholder="Email"
                             />
@@ -58,9 +65,9 @@ function RegistrationPage() {
                         <div className={styles.input_container__field}>
                             <MdVpnKey className={styles.input_container__icon} size='20px' />
                             <Field
-                                className={`${styles.input__control} ${status ? styles.error : ''}`}
+                                className={`${styles.input__control} ${status ? styles.error : ''} ${statusEmail ? styles.error : ''}`}
                                 name="password"
-                                validate={required}
+                                validate={requiredPassword}
                                 type={showPassword ? 'text' : 'password'}
                                 placeholder="Password"
                             />

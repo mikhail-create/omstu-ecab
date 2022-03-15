@@ -6,16 +6,14 @@ import { history } from '../../_helpers/history'
 import { authService } from '../../_services/auth.service'
 import styles from './loginpage.module.scss'
 
-
 function LoginPage() {
     let navigate = useNavigate();
     const [status, setStatus] = useState("")
     const [statusEmail, setStatusEmail] = useState("")
     const [statusPassword, setStatusPassword] = useState("")
-    const requiredEmail = (value: any) => (!!!value ? setStatusEmail("Email required") : setStatusEmail(""));
-    const requiredPassword = (value: any) => (!!!value ? setStatusPassword("Password required") : setStatusPassword(""));
+    const requiredEmail = (value: any) => (!!value ? setStatusEmail("Email required") : setStatusEmail(""));
+    const requiredPassword = (value: any) => (!!value ? setStatusPassword("Password required") : setStatusPassword(""));
     const [showPassword, showPasswrodStatus] = useState(Boolean)
-
 
     return (
         <div className={styles.login}>
@@ -70,7 +68,11 @@ function LoginPage() {
                             />
                         </div>
                     </div>
+                    <>
+                        <button>
 
+                        </button>
+                    </>
                     <button className={styles.form__button} type="submit">Submit</button>
 
                     <div className={styles.login_links}>
@@ -85,8 +87,6 @@ function LoginPage() {
                             </a>
                         </span>
                         {status ? <div className={styles.alert}>{status}</div> : <br></br>}
-                        {statusEmail ? <div className={styles.alert}>{statusEmail}</div> : <br></br>}
-                        {statusPassword ? <div className={styles.alert}>{statusPassword}</div> : <br></br>}
                     </div>
                 </Form>
             </Formik>

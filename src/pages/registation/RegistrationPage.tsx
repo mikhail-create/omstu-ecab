@@ -1,6 +1,7 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik'
 import React, { useState } from 'react'
-import { MdMail, MdPerson, MdRemoveRedEye, MdVpnKey } from 'react-icons/md'
+import { MdMail, MdPerson, MdVpnKey } from 'react-icons/md'
+import { FiEye, FiEyeOff } from "react-icons/fi";
 import { useNavigate } from 'react-router-dom'
 import { authService } from '../../_services/auth.service'
 import styles from './registrationpage.module.scss'
@@ -9,13 +10,15 @@ function RegistrationPage() {
 
     let navigate = useNavigate();
     const [status, setStatus] = useState("")
-    const [statusEmail, setStatusEmail] = useState("")
-    const [statusPassword, setStatusPassword] = useState("")
-    const [statusName, setStatusName] = useState("")
-    const requiredEmail = (value: any) => (!!value ? setStatusEmail("Email required") : setStatusEmail(""));
-    const requiredName = (value: any) => (!!value ? setStatusName("Name required") : setStatusName(""));
-    const requiredPassword = (value: any) => (!!!value ? setStatusPassword("Password required") : setStatusPassword(""));
     const [showPassword, showPasswrodStatus] = useState(Boolean)
+
+    const [isEmailValide, setEmailValide] = useState(Boolean)
+    const [isNameValide, setNameValide] = useState(Boolean)
+    const [isPasswordValide, setPasswordValide] = useState(Boolean)
+
+    const requiredEmail = (value: string) => (!!value ? setEmailValide(false) : setEmailValide(true));
+    const requiredPassword = (value: string) => (!!value ? setPasswordValide(false) : setPasswordValide(true));
+    const requiredName = (value: string) => (!!value ? setNameValide(false) : setNameValide(true));
 
     return (
         <div className={styles.registration}>
@@ -23,7 +26,7 @@ function RegistrationPage() {
                 initialValues={{ name: "", email: "", password: "" }}
                 onSubmit={(values) => {
                     setStatus("")
-                    if (!!!statusEmail && !!!statusPassword) {
+                    if (!isEmailValide && !isNameValide && !isPasswordValide) {
                         authService.registration(values.name, values.email, values.password)
                             .then(
                                 user => {
@@ -33,6 +36,8 @@ function RegistrationPage() {
                                     setStatus(error)
                                 }
                             );
+                    } else {
+                        setStatus("Data required")
                     }
                 }}
             >
@@ -45,7 +50,7 @@ function RegistrationPage() {
                         <div className={styles.input_container__field}>
                             <MdPerson className={styles.input_container__icon} size='20px' />
                             <Field
-                                className={`${styles.input__control} ${status ? styles.error : ''} ${statusName ? styles.error : ''}`}
+                                className={`${styles.input__control} ${status ? styles.error : ''} ${isNameValide ? styles.error : ''}`}
                                 name="name"
                                 validate={requiredName}
                                 type="text"
@@ -55,7 +60,7 @@ function RegistrationPage() {
                         <div className={styles.input_container__field}>
                             <MdMail className={styles.input_container__icon} size='20px' />
                             <Field
-                                className={`${styles.input__control} ${status ? styles.error : ''} ${statusEmail ? styles.error : ''}`}
+                                className={`${styles.input__control} ${status ? styles.error : ''} ${isEmailValide ? styles.error : ''}`}
                                 name="email"
                                 validate={requiredEmail}
                                 type="email"
@@ -65,19 +70,30 @@ function RegistrationPage() {
                         <div className={styles.input_container__field}>
                             <MdVpnKey className={styles.input_container__icon} size='20px' />
                             <Field
-                                className={`${styles.input__control} ${status ? styles.error : ''} ${statusEmail ? styles.error : ''}`}
+                                className={`${styles.input__control} ${status ? styles.error : ''} ${isPasswordValide ? styles.error : ''}`}
                                 name="password"
                                 validate={requiredPassword}
                                 type={showPassword ? 'text' : 'password'}
                                 placeholder="Password"
                             />
-                            <MdRemoveRedEye
-                                className={`${styles.input_container__icon} ${styles.input_container__password}`}
-                                size='20px'
-                                onClick={() => {
-                                    showPasswrodStatus(!showPassword)
-                                }}
-                            />
+                            {
+                                showPassword
+                                    ? <FiEye
+                                        className={`${styles.input_container__icon} ${styles.input_container__password}`}
+                                        size='20px'
+                                        onClick={() => {
+                                            showPasswrodStatus(!showPassword)
+                                        }}
+                                    />
+                                    : <FiEyeOff
+                                        className={`${styles.input_container__icon} ${styles.input_container__password}`}
+                                        size='20px'
+                                        onClick={() => {
+                                            showPasswrodStatus(!showPassword)
+                                        }}
+                                    />
+                            }
+
                         </div>
                     </div>
 

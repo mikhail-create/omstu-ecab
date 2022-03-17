@@ -1,19 +1,24 @@
 import { ErrorMessage, Field, Form, Formik, validateYupSchema } from 'formik'
-import React, { useState } from 'react'
-import { MdMail, MdVpnKey, MdRemoveRedEye } from "react-icons/md"
+import React, { FormEvent, useState } from 'react'
+import { FiEye, FiEyeOff } from "react-icons/fi";
+import { MdMail, MdVpnKey } from "react-icons/md"
+import { connect, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
-import { history } from '../../_helpers/history'
 import { authService } from '../../_services/auth.service'
 import styles from './loginpage.module.scss'
 
 function LoginPage() {
+    const dispatch = useDispatch()
+    
     let navigate = useNavigate();
     const [status, setStatus] = useState("")
-    const [statusEmail, setStatusEmail] = useState("")
-    const [statusPassword, setStatusPassword] = useState("")
-    const requiredEmail = (value: any) => (!!value ? setStatusEmail("Email required") : setStatusEmail(""));
-    const requiredPassword = (value: any) => (!!value ? setStatusPassword("Password required") : setStatusPassword(""));
     const [showPassword, showPasswrodStatus] = useState(Boolean)
+
+    const [isEmailValide, setEmailValide] = useState(Boolean)
+    const [isPasswordValide, setPasswordValide] = useState(Boolean)
+
+    const requiredEmail = (value: string) => (!!value ? setEmailValide(false) : setEmailValide(true));
+    const requiredPassword = (value: string) => (!!value ? setPasswordValide(false) : setPasswordValide(true));
 
     return (
         <div className={styles.login}>
@@ -21,16 +26,18 @@ function LoginPage() {
                 initialValues={{ email: "", password: "" }}
                 onSubmit={(values) => {
                     setStatus("")
-                    if (!!!statusEmail && !!!statusPassword) {
+                    if (!isEmailValide && !isPasswordValide) {
                         authService.login(values.email, values.password)
-                        .then(
-                            user => {
-                                navigate("/news")
-                            },
-                            error => {
-                                setStatus(error)
-                            }
-                        );
+                            .then(
+                                user => {
+                                    navigate("/news")
+                                },
+                                error => {
+                                    setStatus(error)
+                                }
+                            );
+                    } else {
+                        setStatus("Email and password required")
                     }
                 }}
             >
@@ -43,7 +50,7 @@ function LoginPage() {
                         <div className={styles.input_container__field}>
                             <MdMail className={styles.input_container__icon} size='20px' />
                             <Field
-                                className={`${styles.input__control} ${status ? styles.error : ''} ${statusEmail ? styles.error : ''}`}
+                                className={`${styles.input__control} ${status ? styles.error : ''} ${isEmailValide ? styles.error : ''}`}
                                 validate={requiredEmail}
                                 name="email"
                                 type="email"
@@ -53,26 +60,31 @@ function LoginPage() {
                         <div className={styles.input_container__field}>
                             <MdVpnKey className={styles.input_container__icon} size='20px' />
                             <Field
-                                className={`${styles.input__control} ${status ? styles.error : ''} ${statusPassword ? styles.error : ''}`}
+                                className={`${styles.input__control} ${status ? styles.error : ''} ${isPasswordValide ? styles.error : ''}`}
                                 validate={requiredPassword}
                                 name="password"
                                 type={showPassword ? 'text' : 'password'}
                                 placeholder="Password"
                             />
-                            <MdRemoveRedEye
-                                className={`${styles.input_container__icon} ${styles.input_container__password}`}
-                                size='20px'
-                                onClick={() => {
-                                    showPasswrodStatus(!showPassword)
-                                }}
-                            />
+                            {
+                                showPassword
+                                    ? <FiEye
+                                        className={`${styles.input_container__icon} ${styles.input_container__password}`}
+                                        size='20px'
+                                        onClick={() => {
+                                            showPasswrodStatus(!showPassword)
+                                        }}
+                                    />
+                                    : <FiEyeOff
+                                        className={`${styles.input_container__icon} ${styles.input_container__password}`}
+                                        size='20px'
+                                        onClick={() => {
+                                            showPasswrodStatus(!showPassword)
+                                        }}
+                                    />
+                            }
                         </div>
                     </div>
-                    <>
-                        <button>
-
-                        </button>
-                    </>
                     <button className={styles.form__button} type="submit">Submit</button>
 
                     <div className={styles.login_links}>

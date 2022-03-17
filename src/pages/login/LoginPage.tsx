@@ -2,15 +2,15 @@ import { ErrorMessage, Field, Form, Formik, validateYupSchema } from 'formik'
 import React, { FormEvent, useState } from 'react'
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { MdMail, MdVpnKey } from "react-icons/md"
-import { connect, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
-import { authService } from '../../_services/auth.service'
+import { useActions } from '../../hooks/useActions';
+import { useTypedSelector } from '../../hooks/useTypedSelector';
 import styles from './loginpage.module.scss'
 
 function LoginPage() {
-    const dispatch = useDispatch()
-    
-    let navigate = useNavigate();
+    let { signIn } = useActions()
+    let { error } = useTypedSelector(state => state.auth)
+
     const [status, setStatus] = useState("")
     const [showPassword, showPasswrodStatus] = useState(Boolean)
 
@@ -27,15 +27,7 @@ function LoginPage() {
                 onSubmit={(values) => {
                     setStatus("")
                     if (!isEmailValide && !isPasswordValide) {
-                        authService.login(values.email, values.password)
-                            .then(
-                                user => {
-                                    navigate("/news")
-                                },
-                                error => {
-                                    setStatus(error)
-                                }
-                            );
+                        signIn(values.email, values.password)
                     } else {
                         setStatus("Email and password required")
                     }
@@ -98,7 +90,10 @@ function LoginPage() {
                                 Don't have an account?
                             </a>
                         </span>
-                        {status ? <div className={styles.alert}>{status}</div> : <br></br>}
+                        <div className={styles.errors}>
+                            {error ? <div className={styles.alert}>{error}</div> : <br></br>}
+                            {status ? <div className={styles.alert}>{status}</div> : <br></br>}
+                        </div>
                     </div>
                 </Form>
             </Formik>

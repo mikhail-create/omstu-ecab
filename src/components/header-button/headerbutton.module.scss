@@ -11,6 +11,11 @@
     font-family: noto sans, sans-serif;
     color: $light-dark-blue;
     font-weight: 500;
+
+    &__link {
+        text-decoration: none;
+        color: $light-dark-blue;
+    }
 }
 
 .button:hover {

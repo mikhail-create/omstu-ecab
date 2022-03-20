@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
+    width: 1600px;
 
     &__nav {
         padding-top: 105px;
@@ -12,6 +13,7 @@
     }
 
     &__content {
+        width: 1040px;
         margin-top: 70px;
     }
 

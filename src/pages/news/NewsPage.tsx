@@ -1,8 +1,8 @@
 import React from 'react'
-import NewsCard from '../news-card/NewsCard'
-import styles from './news.module.scss'
+import NewsCard from '../../components/news-card/NewsCard'
+import styles from './newspage.module.scss'
 
-function News() {
+function NewsPage() {
     return (
         <div className={styles.news}>
             <div className={styles.news_title}>
@@ -15,4 +15,4 @@ function News() {
     )
 }
 
-export default News
+export default NewsPage

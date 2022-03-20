@@ -1,0 +1,50 @@
+@import "../../styles/colors.scss";
+
+.profile {
+    padding: 13px;
+    width: 260px;
+    height: fit-content;
+    max-width: 280px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: $block-bg;
+    border-radius: 8px;
+
+    &_info {
+        display: flex;
+        flex-direction: row;
+        font-family: "Montserrat";
+        letter-spacing: 0em;
+        text-align: left;
+
+        &__image {
+            width: 55px;
+            height: 55px;
+            border-radius: 100%;
+            background-color: antiquewhite;
+            margin-right: 16px;
+        }
+
+        &_wrapper {
+            padding-top: 5px;
+            display: flex;
+            flex-direction: column;
+
+            &__name {
+                font-size: 14px;
+                font-style: bold;
+                font-weight: 600;
+                line-height: 16px;
+                padding-bottom: 5px;
+            }
+
+            &__group {
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 400;
+            }
+        }
+    }
+}

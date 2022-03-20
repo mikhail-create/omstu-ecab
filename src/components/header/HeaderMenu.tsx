@@ -1,6 +1,7 @@
 import React from 'react'
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import HeaderButton from '../header-button/HeaderButton';
+import Logo from '../../images/icons/logo.svg'
 import styles from './header.module.scss';
 
 function HeaderMenu() {
@@ -10,7 +11,7 @@ function HeaderMenu() {
         <div className={styles.header}>
             <div className={styles.header_nav}>
                 <span className={styles.header_nav__logo}>
-                    EduCab
+                    <img src={Logo} />
                 </span>
                 {
                     currentPage === 1

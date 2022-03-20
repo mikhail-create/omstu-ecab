@@ -1,8 +1,10 @@
-@import url("https://fonts.googleapis.com/css?family=Dosis:300");
+@import url("https://fonts.googleapis.com/css?family=Dosis:400");
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 
-$white: #fff;
-$border-color: #36404a1f;
-$bg-color: #f5f5f5;
+$block-bg: #F7F7F7;
+$border-color: #EDEDED;
+$bg-color: #fff;
 $dark-blue: #2a3142;
 $medium-dark-blue: lighten(#2a3142, 25%);
 $light-dark-blue: lighten(#2a3142, 65%);

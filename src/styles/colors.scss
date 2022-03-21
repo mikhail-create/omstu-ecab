@@ -1,13 +1,16 @@
 @import url("https://fonts.googleapis.com/css?family=Dosis:400");
-@import url('https://fonts.googleapis.com/css2?family=Work+Sans&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Work+Sans&display=swap");
 
-$block-bg: #F7F7F7;
-$border-color: #EDEDED;
+$block-bg: #f7f7f7;
+$border-color: #ededed;
 $bg-color: #fff;
+$peach: #fdcb9e;
 $dark-blue: #2a3142;
 $medium-dark-blue: lighten(#2a3142, 25%);
 $light-dark-blue: lighten(#2a3142, 65%);
-$textSecondary: #1F1F1F;
-$blue: #3bafda;
-$error: #ff0000;
+$textSecondary: #3f3f44;
+$blue: #6E9BC5;;
+$green: #cceabb;
+$error: #ff2600;
+$warn: #ebc8c2;

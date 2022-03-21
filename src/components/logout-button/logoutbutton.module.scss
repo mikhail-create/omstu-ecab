@@ -3,7 +3,6 @@
 .button {
     height: 40px;
     width: 200px;
-    margin-top: 18px;
     margin-bottom: 18px;
     display: flex;
     align-items: center;
@@ -18,7 +17,7 @@
 
     &__link {
         text-decoration: none;
-        color: #3f3f44;
+        color: $textSecondary;
         font-size: 16px;
         font-family: 'Montserrat';
         font-style: normal;
@@ -27,6 +26,6 @@
 }
 
 .button:hover {
-    background-color: #ebc8c2;;
+    background-color: $warn;
     transition: 0.5s;
 }

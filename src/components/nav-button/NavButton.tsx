@@ -13,7 +13,7 @@ function NavButton(props: NavButtonProps) {
     const path = props.path
     const activeClassName = styles.active
     return (
-        <div className={`${styles.button} ${props.current ? styles.active : ''}`}>
+        <div>
             <NavLink
                 to={path}
                 className={({ isActive }) => `${styles.button} ${isActive ? styles.active : ''}`}

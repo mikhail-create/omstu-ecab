@@ -12,13 +12,13 @@ function CourseCard() {
         setCourseCount(2)
     }, [])
 
-    const openCard = () => {
+    const collapseCard = () => {
         setIsCollapsed(!isCollapsed)
     }
 
     return (
         <div className={styles.card}>
-            <div className={styles.card_header} onClick={openCard}>
+            <div className={styles.card_header} onClick={collapseCard}>
                 <div className={styles.card_header_title}>
                     <span className={`${styles.card_header_title__image}  ${isCollapsed ? styles.peach : styles.green}`}>
                         {courseName.charAt(0)}

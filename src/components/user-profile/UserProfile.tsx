@@ -1,21 +1,28 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { MdNotificationsNone } from 'react-icons/md'
 import { useTypedSelector } from '../../hooks/useTypedSelector'
+import { userService } from '../../_services/user.service'
 import styles from './userprofile.module.scss'
 
 function UserProfile() {
-    const userName = localStorage.getItem('userName')
-    const userRoles = localStorage.getItem('userRoles')
+    const [name, setName] = useState(String)
+    const [group, setGroup] = useState(String)
+    const user = userService.getUser().then(
+        user=> {
+            setName(user.name)
+            setGroup(user.group)
+        }
+    )
     return (
         <div className={styles.profile}>
             <div className={styles.profile_info}>
                 <div className={styles.profile_info__image}></div>
                 <div className={styles.profile_info_wrapper}>
                     <div className={styles.profile_info_wrapper__name}>
-                        {userName ? userName : 'Unknown user'}
+                        {name ? name : 'Unknown user'}
                     </div>
                     <div className={styles.profile_info_wrapper_}>
-                        {userRoles ? userRoles : 'Unknown roles'}
+                        {group ? group : 'Unknown group'}
                     </div>
                 </div>
             </div>

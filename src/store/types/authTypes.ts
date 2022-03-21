@@ -1,8 +1,8 @@
 export type AuthState = {
     userData: {
         name: string
-        email: string | null
-        roles: string[]
+        email: string
+        _id: string
     }
     token: string | null
     isSignedIn: Boolean

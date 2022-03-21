@@ -9,6 +9,7 @@ export const authService = {
 
 function logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('_id');
     window.location.replace('http://localhost:3000/login');
 }
 

@@ -3,6 +3,7 @@ import { handleResponse } from "../_helpers/handle-response";
 
 export const userService = {
     getAll,
+    getUser
 }
 
 function getAll() {
@@ -19,4 +20,11 @@ function getAll() {
 
 function getUser() {
     const token = localStorage.getItem('token');
+    const _id = localStorage.getItem('_id');
+    const requestOptions = { method: 'GET', headers: { Authorization: `Bearer ${token}` } };
+    return fetch(`http://localhost:5000/users/${_id}`, requestOptions)
+        .then(handleResponse)
+        .then(user => {
+            return user;
+        })
 }

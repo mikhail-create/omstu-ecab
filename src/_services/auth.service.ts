@@ -33,7 +33,6 @@ function login(email: string, password: string) {
         body: JSON.stringify({ email, password })
     }
 
-
     return fetch('http://localhost:5000/auth/login', requestOptions)
         .then(handleResponse)
         .then(user => {

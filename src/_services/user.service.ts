@@ -16,3 +16,7 @@ function getAll() {
             return user;
         })
 }
+
+function getUser() {
+    const token = localStorage.getItem('token');
+}

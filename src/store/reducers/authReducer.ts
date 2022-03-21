@@ -1,10 +1,11 @@
+import { history } from "../../_helpers/history"
 import { AuthAction, AuthActionTypes, AuthState } from "../types/authTypes"
 
 const initialState: AuthState = {
     userData: {
-        name: null,
+        name: "",
         email: null,
-        roles: null
+        roles: []
     },
     error: null,
     isSignedIn: false,
@@ -15,6 +16,10 @@ const initialState: AuthState = {
 export const authReducer = (state = initialState, action: AuthAction): AuthState => {
     switch (action.type) {
         case AuthActionTypes.SIGN_IN_SUCCESS:
+            localStorage.setItem('userName', action.payload.userData.name)
+            localStorage.setItem('userRoles', action.payload.userData.roles[0])
+            history.push("/news")
+            window.location.reload();
             return {
                 userData: {
                     name: action.payload.userData.name,

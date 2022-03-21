@@ -7,6 +7,7 @@ export const signIn = (email: string, password: string) => {
     return async (dispatch: Dispatch<AuthAction>) => {
         try {
             const response = await authService.login(email, password)  
+            console.log(response);
             localStorage.setItem('token', response.token.token);
             dispatch({
                 type: AuthActionTypes.SIGN_IN_SUCCESS,
@@ -49,8 +50,7 @@ export const signUp = (name: string, email: string, password: string) => {
 
 export const signOut = () => {
     return async (dispatch: Dispatch<AuthAction>) => {
-        localStorage.removeItem('token')
-        window.location.reload()
+        authService.logout()
         dispatch({
             type: AuthActionTypes.SIGN_OUT
         })

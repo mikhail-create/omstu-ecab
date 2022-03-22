@@ -5,28 +5,25 @@ const initialState: AuthState = {
     userData: {
         name: "",
         email: "",
-        _id: ""
+        _id: "",
+        group: ""
     },
     error: null,
     isSignedIn: false,
-    token: null,
     isLoading: false
 }
 
 export const authReducer = (state = initialState, action: AuthAction): AuthState => {
     switch (action.type) {
         case AuthActionTypes.SIGN_IN_SUCCESS:
-            localStorage.setItem('_id', action.payload.userData._id)
-            history.push("/news")
-            window.location.reload();
             return {
                 userData: {
                     name: action.payload.userData.name,
                     email: action.payload.userData.email,
+                    group: action.payload.userData.group,
                     _id: action.payload.userData._id
                 },
                 isSignedIn: action.payload.isSignedIn,
-                token: action.payload.token,
             }
 
         case AuthActionTypes.SIGN_IN_FAILED:
@@ -36,17 +33,14 @@ export const authReducer = (state = initialState, action: AuthAction): AuthState
             }
 
         case AuthActionTypes.SIGN_UP_SUCCESS:
-            localStorage.setItem('_id', action.payload.userData._id)
-            history.push("/news")
-            window.location.reload();
             return {
                 userData: {
                     name: action.payload.userData.name,
                     email: action.payload.userData.email,
+                    group: action.payload.userData.group,
                     _id: action.payload.userData._id
                 },
                 isSignedIn: action.payload.isSignedIn,
-                token: action.payload.token,
             }
 
         case AuthActionTypes.SIGN_UP_FAILED:

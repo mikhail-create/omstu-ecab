@@ -2,18 +2,19 @@ import axios from "axios";
 import { handleResponse } from "../_helpers/handle-response";
 
 export const authService = {
-    login,
+    signIn,
     logout,
-    registration
+    signUp,
+    refresh
 }
 
 function logout() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('_id');
+    localStorage.removeItem('access');
+    localStorage.removeItem('refresh');
     window.location.replace('http://localhost:3000/login');
 }
 
-function registration(name: string, email: string, password: string) {
+function signUp(name: string, email: string, password: string) {
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -23,11 +24,12 @@ function registration(name: string, email: string, password: string) {
     return fetch('http://localhost:5000/auth/registration', requestOptions)
         .then(handleResponse)
         .then(user => {
+            window.location.replace('http://localhost:3000/news');
             return user;
         });
 }
 
-function login(email: string, password: string) {
+function signIn(email: string, password: string) {
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -37,6 +39,21 @@ function login(email: string, password: string) {
     return fetch('http://localhost:5000/auth/login', requestOptions)
         .then(handleResponse)
         .then(user => {
+            window.location.replace('http://localhost:3000/news');
             return user;
+        });
+}
+
+function refresh(refresh: any) {
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${refresh}` },
+        body: JSON.stringify({ refresh })
+    }
+
+    return fetch('http://localhost:5000/auth/refresh', requestOptions)
+        .then(handleResponse)
+        .then(token => {
+            return token;
         });
 }

@@ -4,7 +4,6 @@ import HeaderButton from '../nav-button/NavButton';
 import Logo from '../../images/icons/logo.svg'
 import styles from './header.module.scss';
 import { MdLaptop, MdLibraryBooks, MdNotes, MdPerson, MdSettings } from 'react-icons/md';
-import { history } from '../../_helpers/history';
 import LogoutButton from '../logout-button/LogoutButton';
 
 export interface HeaderMenuProps {

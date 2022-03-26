@@ -6,7 +6,7 @@ import { AuthAction, AuthActionTypes } from "../types/authTypes"
 export const signIn = (email: string, password: string) => {
     return async (dispatch: Dispatch<AuthAction>) => {
         try {
-            const response = await authService.signIn(email, password)  
+            const response = await authService.signIn(email, password)
             localStorage.setItem('access', response.access);
             localStorage.setItem('refresh', response.refresh);
             dispatch({
@@ -17,7 +17,7 @@ export const signIn = (email: string, password: string) => {
                 }
             })
         }
-        catch (error) {            
+        catch (error) {
             dispatch({
                 type: AuthActionTypes.SIGN_IN_FAILED,
                 payload: String(error)
@@ -29,7 +29,7 @@ export const signIn = (email: string, password: string) => {
 export const signUp = (name: string, email: string, password: string) => {
     return async (dispatch: Dispatch<AuthAction>) => {
         try {
-            const response = await authService.signUp(name, email, password)  
+            const response = await authService.signUp(name, email, password)
             localStorage.setItem('access', response.access);
             localStorage.setItem('refresh', response.refresh);
             dispatch({
@@ -40,7 +40,7 @@ export const signUp = (name: string, email: string, password: string) => {
                 }
             })
         }
-        catch (error) {            
+        catch (error) {
             dispatch({
                 type: AuthActionTypes.SIGN_UP_FAILED,
                 payload: String(error)
@@ -62,7 +62,7 @@ export const checkAuth = () => {
     return async (dispatch: Dispatch<AuthAction>) => {
         try {
             const refresh = localStorage.getItem('refresh')
-            const response = await authService.refresh(refresh)  
+            const response = await authService.refresh(refresh)
             localStorage.setItem('access', response.access);
             dispatch({
                 type: AuthActionTypes.SIGN_IN_SUCCESS,
@@ -72,7 +72,7 @@ export const checkAuth = () => {
                 }
             })
         }
-        catch (error) {            
+        catch (error) {
             dispatch({
                 type: AuthActionTypes.SIGN_IN_FAILED,
                 payload: String(error)

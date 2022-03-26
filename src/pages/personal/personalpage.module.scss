@@ -1,0 +1,30 @@
+@import "../../styles/colors.scss";
+
+.personal {
+    width: 100%;
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+
+    &_title {
+        font-family: "Montserrat";
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 19px;
+        letter-spacing: 0em;
+        text-align: left;
+        color: $textSecondary;
+        margin-bottom: 24px;
+    }
+    &_table {
+        display: flex;
+        flex-direction: column;
+
+        &__data {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+    }
+}

@@ -16,6 +16,7 @@ const initialState: AuthState = {
 export const authReducer = (state = initialState, action: AuthAction): AuthState => {
     switch (action.type) {
         case AuthActionTypes.SIGN_IN_SUCCESS:
+            localStorage.setItem('email', action.payload.userData.email)
             return {
                 userData: {
                     name: action.payload.userData.name,
@@ -33,6 +34,7 @@ export const authReducer = (state = initialState, action: AuthAction): AuthState
             }
 
         case AuthActionTypes.SIGN_UP_SUCCESS:
+            localStorage.setItem('email', action.payload.userData.email)
             return {
                 userData: {
                     name: action.payload.userData.name,

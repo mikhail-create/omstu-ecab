@@ -7,9 +7,7 @@ import styles from './portfoliopage.module.scss'
 function PortfolioPage() {
     let { userData } = useTypedSelector(state => state.auth)
     const currentdate = new Date();
-    const time = currentdate.getHours()
-    console.log(userService.getAll());
-    
+    const time = currentdate.getHours()    
     return (
         <div className={styles.portfolio}>
             <div className={styles.portfolio_greeting}>

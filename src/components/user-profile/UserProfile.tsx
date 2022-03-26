@@ -14,8 +14,11 @@ function UserProfile() {
                     <div className={styles.profile_info_wrapper__name}>
                         {userData.name ? userData.name : 'Unknown user'}
                     </div>
-                    <div className={styles.profile_info_wrapper_}>
+                    <div className={styles.profile_info_wrapper}>
                         {userData.group ? userData.group : 'Unknown group'}
+                    </div>
+                    <div className={styles.profile_info_wrapper}>
+                        {userData._id ? userData._id : 'Unknown group'}
                     </div>
                 </div>
             </div>

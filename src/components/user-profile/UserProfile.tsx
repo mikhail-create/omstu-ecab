@@ -9,16 +9,15 @@ function UserProfile() {
     return (
         <div className={styles.profile}>
             <div className={styles.profile_info}>
-                <div className={styles.profile_info__image}></div>
+                <div className={styles.profile_info__image}>
+                    {/* IMAGE */}
+                </div>
                 <div className={styles.profile_info_wrapper}>
                     <div className={styles.profile_info_wrapper__name}>
-                        {userData.name ? userData.name : 'Unknown user'}
+                        {userData.name ? userData.name.split(' ')[0] : 'Unknown user'}
                     </div>
                     <div className={styles.profile_info_wrapper}>
                         {userData.group ? userData.group : 'Unknown group'}
-                    </div>
-                    <div className={styles.profile_info_wrapper}>
-                        {userData._id ? userData._id : 'Unknown group'}
                     </div>
                 </div>
             </div>

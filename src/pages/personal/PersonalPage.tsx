@@ -1,6 +1,7 @@
 import { Field, Form, Formik } from 'formik'
 import React, { useEffect, useState } from 'react'
 import ProfileField from '../../components/profile-field/ProfileField'
+import SuccessButton from '../../components/success-button/SuccessButton'
 import { useTypedSelector } from '../../hooks/useTypedSelector'
 import { userService } from '../../_services/user.service'
 import styles from './personalpage.module.scss'
@@ -8,6 +9,7 @@ import styles from './personalpage.module.scss'
 function PersonalPage() {
     const [user, setUser] = useState(Object)
     const [userData, setUserData] = useState(Object)
+    const [updateStaus, setUpdateStatus] = useState(String)
 
     useEffect(() => {
         userService.getUser().then(
@@ -58,6 +60,13 @@ function PersonalPage() {
                         fullName,
                         values.group ? values.group : user.group,
                         [fullData]
+                    ).then(
+                        response => {
+                            setUpdateStatus("Данные успешно обновлены")
+                            setTimeout(() => {
+                                setUserData(response.fullData[0] ? response.fullData[0] : "")
+                            }, 2000)
+                        }
                     )
                 }}
             >
@@ -129,9 +138,27 @@ function PersonalPage() {
                             placeholder={userData.phone || ''}
                         />
                     </div>
-                    <button className={styles.form__button} type="submit">Submit</button>
+                    <div className={styles.personal_title}>
+                        Безопасность
+                    </div>
+                    <div className={`${styles.personal_table__data} ${styles.personal_table__alert}`}>
+                        <ProfileField
+                            title='Пароль'
+                            name='password'
+                            placeholder="********"
+                        />
+                        <ProfileField
+                            title='Подтверждение пароля'
+                            name='passwordConfirm'
+                            placeholder="********"
+                        />
+                    </div>
+                    <button className={styles.form__button} type="submit">Подтвердить</button>
                 </Form>
             </Formik>
+            <div className={(updateStaus ? '' : styles.hiden)}>
+                <SuccessButton title="Данные успешно обновлены" />
+            </div>
         </div >
     )
 }

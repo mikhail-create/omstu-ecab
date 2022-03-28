@@ -1,6 +1,45 @@
 @import "../../styles/colors.scss";
 
 .courses {
+    &_form {
+        display: flex;
+        flex-direction: column;
+        max-width: 280px;
+
+        &_input {
+            height: 40px;
+            background: $block-bg;
+            border-radius: 8px;
+            border: none;
+            display: flex;
+            align-items: center;
+            padding-left: 16px;
+            padding-right: 16px;
+            color: $textSecondary;
+            font-family: "Roboto";
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 14px;
+            text-align: left;
+            margin-bottom: 24px;
+
+            > option {
+                color: $textSecondary;
+                font-family: "Roboto";
+                font-size: 14px;
+            }
+        }
+
+        > button {
+            height: fit-content;
+            background-color: rgba(255, 255, 255, 0);
+            width: 100%;
+            border: none;
+            margin-bottom: 24px;
+        }
+    }
+
     &__title {
         font-family: "Roboto";
         font-size: 16px;
@@ -8,6 +47,7 @@
         font-weight: 600;
         line-height: 19px;
         letter-spacing: 0em;
+        margin-bottom: 24px;
         text-align: left;
         color: $textSecondary;
     }
@@ -32,5 +72,28 @@
         padding-left: 16px;
         padding-right: 16px;
         color: darken($block-bg, 50%);
+    }
+
+    .file {
+        display: flex;
+        align-items: center;
+        font-family: "Roboto";
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 19px;
+        letter-spacing: 0em;
+        margin-bottom: 24px;
+        text-align: left;
+        color: $textSecondary;
+        cursor: pointer;
+    }
+
+    .file:nth-child(2) {
+        margin-left: 8px;
+    }
+
+    .file:hover {
+        text-decoration: underline;
     }
 }

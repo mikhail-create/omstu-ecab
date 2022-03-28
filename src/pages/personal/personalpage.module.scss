@@ -25,6 +25,27 @@
             display: flex;
             flex-wrap: wrap;
         }
+    }
 
+    .hiden {
+        display: none;
+    }
+
+    .form__button {
+        width: fit-content;
+        height: fit-content;
+        background: $peach;
+        border-radius: 8px;
+        border: none;
+        padding: 12px 30px;
+        font-family: "Montserrat";
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 16px;
+        letter-spacing: 0em;
+        text-align: center;
+        color: $textSecondary;
+        cursor: pointer;
     }
 }

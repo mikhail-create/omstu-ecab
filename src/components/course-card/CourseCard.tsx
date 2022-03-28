@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { MdFileDownload } from 'react-icons/md'
+import { Link } from 'react-router-dom'
 import styles from './coursecard.module.scss'
 
 function CourseCard() {
@@ -44,30 +45,10 @@ function CourseCard() {
                     </div>
                     <div className={styles.card_files_list}>
                         <div className={styles.card_files_list__item}>
+                            <a href="http://localhost:5000/files/1DdZxZKhKCA31066.jpg">
+                                Отчет по лабораторной работе 213
+                            </a>
                             <span>
-                                Отчет по лабораторной работе
-                                <span className={styles.icon}>
-                                    <MdFileDownload />
-                                </span>
-                            </span>
-                            <span>
-                                6
-                            </span>
-                        </div>
-                        <div className={styles.card_files_list__item}>
-                            <span>
-                                Отчет по лабораторной работе
-                                <span className={styles.icon}>
-                                    <MdFileDownload />
-                                </span>
-                            </span>
-                            <span>
-                                6
-                            </span>
-                        </div>
-                        <div className={styles.card_files_list__item}>
-                            <span>
-                                Отчет по лабораторной работе
                                 <span className={styles.icon}>
                                     <MdFileDownload />
                                 </span>

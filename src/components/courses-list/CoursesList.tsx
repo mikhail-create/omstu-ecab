@@ -1,14 +1,24 @@
 import axios from 'axios'
 import { Field, Form, Formik } from 'formik'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { MdClose } from 'react-icons/md'
 import { useTypedSelector } from '../../hooks/useTypedSelector'
+import { fileService } from '../../_services/files.service'
 import CourseCard from '../course-card/CourseCard'
 import Dropzone from '../dropzone/Dropzone'
 import UploadButton from '../upload-button/UploadButton'
 import styles from './courseslist.module.scss'
 
+// interface UserFiles {
+//     course: number;
+//     name: string;
+//     path: string;
+//     semester: string;
+// }
+
 function CoursesList() {
+    const [data, setData] = useState([])
+    const [userFiles, setUserFiles] = useState()
     const [file, setFile] = useState(Object)
     const [fileName, setFileName] = useState(String)
 
@@ -22,7 +32,14 @@ function CoursesList() {
         setFileName('')
     }
 
-    let { userData } = useTypedSelector(state => state.auth)
+    const { userData } = useTypedSelector(state => state.auth)
+
+    useEffect(() => {
+        fileService.getUserFiles().then(res => {
+            setData(res.data)
+            // setData(Object.entries(res.data))
+        })
+    }, [])
 
     return (
         <div className={styles.courses}>
@@ -92,9 +109,9 @@ function CoursesList() {
                 </div>
             </div>
             <div className={styles.courses_body}>
-                <CourseCard />
-                <CourseCard />
-                <CourseCard />
+                {
+                   Object.entries(data).map((item) => <CourseCard course={item[0]} items={item[1]} />)
+                }
             </div>
         </div>
     )

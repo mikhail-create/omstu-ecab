@@ -1,5 +1,3 @@
-import axios from "axios";
-import { useTypedSelector } from "../hooks/useTypedSelector";
 import { handleResponse } from "../_helpers/handle-response";
 
 export const userService = {

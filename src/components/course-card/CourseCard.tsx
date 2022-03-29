@@ -1,19 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { MdFileDownload } from 'react-icons/md'
-import { Link } from 'react-router-dom'
 import styles from './coursecard.module.scss'
 
-function CourseCard() {
-    const [courseName, setCourseName] = useState("")
-    const [courseCount, setCourseCount] = useState(Number)
+export interface CourseCardProps {
+    course: string,
+    items?: any
+}
+
+function CourseCard(props: CourseCardProps) {
     const [isCollapsed, setIsCollapsed] = useState(Boolean)
 
-    useEffect(() => {
-        setCourseName("Программирование")
-        setCourseCount(2)
-    }, [])
-
     const collapseCard = () => {
+        console.log(props.items)
         setIsCollapsed(!isCollapsed)
     }
 
@@ -22,14 +20,14 @@ function CourseCard() {
             <div className={styles.card_header} onClick={collapseCard}>
                 <div className={styles.card_header_title}>
                     <span className={`${styles.card_header_title__image}  ${isCollapsed ? styles.peach : styles.green}`}>
-                        {courseName.charAt(0)}
+                        {props.course[0]}
                     </span>
                     <span className={styles.card_header_title__name}>
-                        {courseName}
+                        {props.course}
                     </span>
                 </div>
                 <span className={styles.card_header__count}>
-                    {courseCount}
+                    {props.items.length}
                 </span>
             </div>
             {
@@ -44,7 +42,26 @@ function CourseCard() {
                         </span>
                     </div>
                     <div className={styles.card_files_list}>
-                        <div className={styles.card_files_list__item}>
+                        {
+                            props.items.map((card: any) =>
+                                <div className={styles.card_files_list__item}>
+                                    <div>
+                                        <a href={card.path}>
+                                            {card.name}
+                                        </a>
+                                        <span>
+                                            <span className={styles.icon}>
+                                                <MdFileDownload />
+                                            </span>
+                                        </span>
+                                    </div>
+                                    <span>
+                                        {card.semester}
+                                    </span>
+                                </div>
+                            )
+                        }
+                        {/* <div className={styles.card_files_list__item}>
                             <a href="http://localhost:5000/files/1DdZxZKhKCA31066.jpg">
                                 Отчет по лабораторной работе 213
                             </a>
@@ -56,7 +73,7 @@ function CourseCard() {
                             <span>
                                 6
                             </span>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             }

@@ -8,6 +8,7 @@ import RegistrationPage from './pages/registation/RegistrationPage';
 import NewsPage from './pages/news/NewsPage';
 import { useActions } from './hooks/useActions';
 import PersonalPage from './pages/personal/PersonalPage';
+import StudyPage from './pages/study/StudyPage';
 function App() {
     let { checkAuth } = useActions()
     useEffect(() => {
@@ -15,6 +16,7 @@ function App() {
             checkAuth()
         } 
     }, [])
+    
     return (
         <div className="App">
             <BrowserRouter>
@@ -24,6 +26,7 @@ function App() {
                     <Route path='news' element={<MainLayout component={<NewsPage />} />} />
                     <Route path='portfolio' element={<MainLayout component={<PortfolioPage />} />} />
                     <Route path='personal' element={<MainLayout component={<PersonalPage />} />} />
+                    <Route path='study' element={<MainLayout component={<StudyPage />} />} />
                 </Routes>
             </BrowserRouter>
         </div>

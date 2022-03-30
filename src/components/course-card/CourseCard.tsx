@@ -11,7 +11,6 @@ function CourseCard(props: CourseCardProps) {
     const [isCollapsed, setIsCollapsed] = useState(Boolean)
 
     const collapseCard = () => {
-        console.log(props.items)
         setIsCollapsed(!isCollapsed)
     }
 
@@ -44,7 +43,7 @@ function CourseCard(props: CourseCardProps) {
                     <div className={styles.card_files_list}>
                         {
                             props.items.map((card: any) =>
-                                <div className={styles.card_files_list__item}>
+                                <div key={card.name} className={styles.card_files_list__item}>
                                     <div>
                                         <a href={card.path}>
                                             {card.name}
@@ -61,19 +60,6 @@ function CourseCard(props: CourseCardProps) {
                                 </div>
                             )
                         }
-                        {/* <div className={styles.card_files_list__item}>
-                            <a href="http://localhost:5000/files/1DdZxZKhKCA31066.jpg">
-                                Отчет по лабораторной работе 213
-                            </a>
-                            <span>
-                                <span className={styles.icon}>
-                                    <MdFileDownload />
-                                </span>
-                            </span>
-                            <span>
-                                6
-                            </span>
-                        </div> */}
                     </div>
                 </div>
             }

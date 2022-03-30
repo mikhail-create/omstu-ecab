@@ -4,7 +4,7 @@
     &_form {
         display: flex;
         flex-direction: column;
-        max-width: 280px;
+        max-width: 480px;
 
         &_input {
             height: 40px;
@@ -31,12 +31,18 @@
             }
         }
 
-        > button {
-            height: fit-content;
-            background-color: rgba(255, 255, 255, 0);
-            width: 100%;
-            border: none;
-            margin-bottom: 24px;
+        &__buttons {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+
+            > button {
+                height: fit-content;
+                background-color: rgba(255, 255, 255, 0);
+                width: 50%;
+                border: none;
+            }
         }
     }
 
@@ -48,6 +54,7 @@
         line-height: 19px;
         letter-spacing: 0em;
         margin-bottom: 24px;
+        margin-top: 24px;
         text-align: left;
         color: $textSecondary;
     }
@@ -95,5 +102,9 @@
 
     .file:hover {
         text-decoration: underline;
+    }
+
+    .hiden {
+        display: none;
     }
 }

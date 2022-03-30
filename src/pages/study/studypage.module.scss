@@ -1,0 +1,11 @@
+@import "../../styles/colors.scss";
+
+.study {
+    &__title {
+        font-family: "Montserrat";
+        font-size: 18px;
+        font-weight: 500;
+        color: $textSecondary;
+        margin-top: 24px;
+    }
+}

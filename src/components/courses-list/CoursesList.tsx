@@ -6,17 +6,12 @@ import { useTypedSelector } from '../../hooks/useTypedSelector'
 import { fileService } from '../../_services/files.service'
 import CourseCard from '../course-card/CourseCard'
 import Dropzone from '../dropzone/Dropzone'
+import SuccessButton from '../success-button/SuccessButton'
 import UploadButton from '../upload-button/UploadButton'
 import styles from './courseslist.module.scss'
 
-// interface UserFiles {
-//     course: number;
-//     name: string;
-//     path: string;
-//     semester: string;
-// }
-
 function CoursesList() {
+    const [isUploaded, setIsUploaded] = useState(false)
     const [data, setData] = useState([])
     const [userFiles, setUserFiles] = useState()
     const [file, setFile] = useState(Object)
@@ -37,7 +32,6 @@ function CoursesList() {
     useEffect(() => {
         fileService.getUserFiles().then(res => {
             setData(res.data)
-            // setData(Object.entries(res.data))
         })
     }, [])
 
@@ -52,7 +46,15 @@ function CoursesList() {
                     formData.append('name', values.name)
                     formData.append('semester', values.semester)
                     console.log()
-                    axios.post(`http://localhost:5000/files/${userData.email}`, formData)
+                    axios.post(`http://localhost:5000/files/${userData.email}`, formData).then(res => {
+                        setIsUploaded(true)
+                        setTimeout(() => {
+                            fileService.getUserFiles().then(res => {
+                                setData(res.data)
+                            })
+                            setIsUploaded(false)
+                        }, 2000)
+                    })
                 }}
             >
                 <Form className={styles.courses_form}>
@@ -91,10 +93,14 @@ function CoursesList() {
                             ? <> {fileName} <MdClose width="16px" /></> : <br></br>
                         }
                     </div>
-
-                    <button type='submit'>
-                        <UploadButton />
-                    </button>
+                    <div className={styles.courses_form__buttons}>
+                        <button type='submit'>
+                            <UploadButton />
+                        </button>
+                        {
+                            isUploaded && <SuccessButton title="Файлы загружены" />
+                        }
+                    </div>
                 </Form>
             </Formik>
             <div className={styles.courses__title}>
@@ -110,7 +116,7 @@ function CoursesList() {
             </div>
             <div className={styles.courses_body}>
                 {
-                   Object.entries(data).map((item) => <CourseCard course={item[0]} items={item[1]} />)
+                    Object.entries(data).map((item) => <CourseCard key={item[0]} course={item[0]} items={item[1]} />)
                 }
             </div>
         </div>

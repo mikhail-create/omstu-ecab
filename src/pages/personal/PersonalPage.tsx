@@ -153,12 +153,16 @@ function PersonalPage() {
                             placeholder="********"
                         />
                     </div>
-                    <button className={styles.form__button} type="submit">Подтвердить</button>
+                    <div className={styles.form_footer}>
+                        <button className={styles.form_footer__button} type="submit">Подтвердить</button>
+                        <div className={(updateStaus ? '' : styles.hiden)}>
+                            <SuccessButton title="Данные успешно обновлены" />
+                        </div>
+                    </div>
+
                 </Form>
             </Formik>
-            <div className={(updateStaus ? '' : styles.hiden)}>
-                <SuccessButton title="Данные успешно обновлены" />
-            </div>
+
         </div >
     )
 }

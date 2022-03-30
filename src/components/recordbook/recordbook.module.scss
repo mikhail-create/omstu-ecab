@@ -1,0 +1,131 @@
+@import "../../styles/colors.scss";
+
+.recordbook {
+    &_header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    &_info {
+        margin-top: 24px;
+        background-color: $block-bg;
+        border-radius: 16px;
+        padding: 28px 18px;
+
+        &__owner {
+            font-family: "Roboto";
+            font-size: 18px;
+            font-weight: 500;
+            color: $textSecondary;
+            margin-bottom: 12px;
+        }
+
+        &__item {
+            font-family: "Roboto";
+            font-size: 14px;
+            color: $textSecondary;
+            margin-bottom: 12px;
+
+            > span:first-child {
+                font-weight: 500;
+                margin-right: 12px;
+            }
+
+            a {
+                color: darken($blue, 45%) ;
+                text-decoration: none;
+            }
+        }
+    }
+
+    &_nav {
+        width: 280px;
+        height: fit-content;
+        margin-top: 24px;
+        border-radius: 16px;
+
+        &__item {
+            font-family: "Roboto";
+            font-size: 16px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            padding-left: 12px;
+            padding-right: 12px;
+            height: 30px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #1f1f1f;
+            cursor: pointer;
+            transition: 0.5s;
+        }
+
+        &__item:hover {
+            padding-left: 20px;
+        }
+
+        .active {
+            border-radius: 4px;
+            background-color: lighten($green, 5%);
+        }
+    }
+
+    &_content {
+        margin-top: 24px;
+
+        &__title {
+            font-family: 'Montserrat';
+            font-size: 18px;
+            font-weight: 500;
+            color: $textSecondary;
+            margin-bottom: 12px;
+        }
+
+        > table {
+            width: 100%;
+            margin-bottom: 20px;
+            border: 15px solid $block-bg;
+            border-top: 5px solid $block-bg;
+            border-collapse: collapse;
+            border-radius: 25px;
+            font-family: 'Roboto';
+
+            th {
+                font-weight: bold;
+                padding: 5px;
+                background: $block-bg;
+                border: none;
+                border-bottom: 5px solid $block-bg;
+                text-align: left;
+                font-size: 16px;
+                font-weight: 500;
+            }
+
+            td {
+                padding: 5px;
+                border: none;
+                border-radius: 6px;
+                height: 40px;
+                font-size: 16px;
+                border-bottom: 8px solid $block-bg
+            }
+
+            .good {
+                background-color: rgba($green, $alpha: .65);
+            }
+
+            .bad {
+                background-color: rgba($warn, $alpha: .65);
+            }
+
+            .middle {
+                background-color: rgba($peach, $alpha: .65);
+            }
+
+            .excellent {
+                background-color: rgba($blue, $alpha: .65);
+            }
+
+        }
+    }
+}

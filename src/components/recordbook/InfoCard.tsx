@@ -1,18 +1,28 @@
 import React from 'react'
 import styles from './recordbook.module.scss'
 
-function InfoCard() {
+export interface RecordbookProps {
+    email: string | undefined
+    number: string | undefined
+    name: string | undefined
+    format: string | undefined
+    speciality: string | undefined
+    requisites: string | undefined
+    librarycard: string | undefined
+}
+
+function InfoCard(props: RecordbookProps) {
     return (
         <div className={styles.recordbook_info}>
             <div className={styles.recordbook_info__owner}>
-                ЛЕОНОВ Михаил Андреевич
+                {props.name}
             </div>
             <div className={styles.recordbook_info__item}>
                 <span>
                     Номер книжки:
                 </span>
                 <span>
-                    САУ-06-18
+                    {props.number}
                 </span>
             </div>
             <div className={styles.recordbook_info__item}>
@@ -20,7 +30,7 @@ function InfoCard() {
                     Форма обучения:
                 </span>
                 <span>
-                    очное обучение
+                    {props.format}
                 </span>
             </div>
             <div className={styles.recordbook_info__item}>
@@ -28,7 +38,7 @@ function InfoCard() {
                     Специальность:
                 </span>
                 <span>
-                    27.03.03 Системный анализ и управление
+                   {props.speciality}
                 </span>
             </div>
             <div className={styles.recordbook_info__item}>
@@ -36,7 +46,7 @@ function InfoCard() {
                     Реквизиты в СДО "Прометей":
                 </span>
                 <span>
-                    логин:sau-181_006, пароль: fitiks8sau42
+                   {props.requisites}
                 </span>
             </div>
             <div className={styles.recordbook_info__item}>
@@ -44,7 +54,7 @@ function InfoCard() {
                     Читательский билет:
                 </span>
                 <span>
-                    № 24244
+                    {props.librarycard}
                 </span>
             </div>
             <div className={styles.recordbook_info__item}>
@@ -52,7 +62,6 @@ function InfoCard() {
                     <a href="">
                         Доступ в ЭБС "Арбуз"
                     </a>
-
                 </span>
             </div>
             <div className={styles.recordbook_info__item}>

@@ -46,8 +46,8 @@
         border-radius: 16px;
 
         &__item {
-            font-family: "Roboto";
-            font-size: 16px;
+            font-family: "Montserrat";
+            font-size: 13px;
             font-weight: 500;
             display: flex;
             align-items: center;
@@ -58,6 +58,10 @@
             border-bottom: 1px solid #1f1f1f;
             cursor: pointer;
             transition: 0.5s;
+        }
+
+        &__item:last-child {
+            border-bottom: none;
         }
 
         &__item:hover {
@@ -111,7 +115,7 @@
             }
 
             .good {
-                background-color: rgba($green, $alpha: .65);
+                background-color: rgba($blue, $alpha: .65);
             }
 
             .bad {
@@ -123,9 +127,13 @@
             }
 
             .excellent {
-                background-color: rgba($blue, $alpha: .65);
+                background-color: rgba($green, $alpha: .65);
             }
 
         }
     }
+}
+
+.hiden {
+    display: none;
 }

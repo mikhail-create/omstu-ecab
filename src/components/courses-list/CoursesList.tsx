@@ -13,7 +13,6 @@ import styles from './courseslist.module.scss'
 function CoursesList() {
     const [isUploaded, setIsUploaded] = useState(false)
     const [data, setData] = useState([])
-    const [userFiles, setUserFiles] = useState()
     const [file, setFile] = useState(Object)
     const [fileName, setFileName] = useState(String)
 

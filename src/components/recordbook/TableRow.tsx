@@ -2,38 +2,44 @@ import React from 'react'
 import styles from './recordbook.module.scss'
 
 export interface TableRowProps {
-    rate?: string
+    nameOfCourse: string,
+    hours: number,
+    rating: number,
+    rate: string,
+    date: string,
+    teacher: string,
+    index: number
 }
 
 function TableRow(props: TableRowProps) {
     return (
         <tr className={
-            (props.rate === "good" ? styles.good : '') ||
-            (props.rate === "bad" ? styles.bad : '') ||
-            (props.rate === "middle" ? styles.middle : '') ||
-            (props.rate === "excellent" ? styles.excellent : '')
+            (props.rate === "Хорошо" ? styles.good : '') ||
+            (props.rate === "Не удовлетворительно" ? styles.bad : '') ||
+            (props.rate === "Удовлетворительно" ? styles.middle : '') ||
+            (props.rate === "Отлично" ? styles.excellent : '')
 
         }>
             <td>
-                1
+                {props.index}
             </td>
             <td>
-                Программирование
+                {props.nameOfCourse}
             </td>
             <td>
-                182
+                {props.hours}
             </td>
             <td>
-                100
+                {props.rating}
             </td>
             <td>
-                Отлично
+                {props.rate}
             </td>
             <td>
-                30.03.2022
+                {props.date}
             </td>
             <td>
-                Леонов Михаил Андреевич
+                {props.teacher}
             </td>
         </tr>
     )

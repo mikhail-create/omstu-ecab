@@ -15,7 +15,9 @@ function TableRow(props: TableRowProps) {
     return (
         <tr className={
             (props.rate === "Хорошо" ? styles.good : '') ||
+            (props.rate === "Зачтено" ? styles.good : '') ||
             (props.rate === "Не удовлетворительно" ? styles.bad : '') ||
+            (props.rate === "Не зачтено" ? styles.bad : '') ||
             (props.rate === "Удовлетворительно" ? styles.middle : '') ||
             (props.rate === "Отлично" ? styles.excellent : '')
 

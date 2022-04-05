@@ -7,6 +7,9 @@ export type RecordBookData = {
     readonly requisites: string
     readonly librarycard: string
     readonly semesters: {
+        average: number,
+        rating: number,
+        attendance: number,
         exams: {
             nameOfCourse: string,
             hours: number,

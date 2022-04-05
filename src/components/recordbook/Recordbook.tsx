@@ -22,11 +22,6 @@ function Recordbook() {
 
     return (
         <div className={styles.recordbook}>
-            <button onClick={() => {
-                console.log(recordBook)
-            }}>
-                CLCIK
-            </button>
             <div className={styles.recordbook_header}>
                 <InfoCard
                     email={recordBook?.email}

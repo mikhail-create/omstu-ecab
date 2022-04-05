@@ -1,0 +1,36 @@
+@import "../../styles/colors.scss";
+
+.switch {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background-color: $block-bg;
+    width: 125px;
+    font-family: "Montserrat";
+    color: $textSecondary;
+    height: 25px;
+    padding: 0 6px;
+    border-radius: 25px;
+    margin-left: 8px;
+    transition: 0.5s;
+
+    input[type="radio"] {
+        display: none;
+    }
+
+    label {
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+        min-width: 50px;
+    }
+
+    &:first-child {
+        margin-left: 0;
+    }
+}
+
+.active {
+    background-color: $green;
+}

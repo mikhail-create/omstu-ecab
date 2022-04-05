@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { MdNotificationsNone } from 'react-icons/md'
 import { useTypedSelector } from '../../hooks/useTypedSelector'
-import { userService } from '../../_services/user.service'
 import styles from './userprofile.module.scss'
 
 function UserProfile() {
@@ -21,7 +20,6 @@ function UserProfile() {
                     </div>
                 </div>
             </div>
-
             <div className={styles.profile_notifications}>
                 <MdNotificationsNone color='#3F3F44' size="26" />
             </div>

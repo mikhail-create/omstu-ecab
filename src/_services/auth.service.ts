@@ -11,6 +11,7 @@ export const authService = {
 function logout() {
     localStorage.removeItem('access');
     localStorage.removeItem('refresh');
+    localStorage.removeItem('email');
     window.location.replace('http://localhost:3000/login');
 }
 

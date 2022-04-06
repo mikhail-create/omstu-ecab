@@ -1,0 +1,95 @@
+@import "../../styles/colors.scss";
+
+.task {
+    margin-top: 24px;
+
+    &__back {
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        font-family: "Roboto";
+        width: fit-content;
+        margin-bottom: 24px;
+        cursor: pointer;
+
+        > span {
+            margin-left: 8px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0);
+            transition: 0.25s;
+
+            &:hover {
+                border-bottom: 1px solid $blue;
+            }
+        }
+    }
+
+    &__name {
+        font-family: "Montserrat";
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 19px;
+        letter-spacing: 0em;
+        text-align: left;
+        color: $textSecondary;
+        margin-bottom: 24px;
+    }
+
+    &_body {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-bottom: 24px;
+        font-family: "Roboto";
+        font-size: 16px;
+        font-style: normal;
+        font-weight: normal;
+        line-height: 18px;
+        letter-spacing: 0em;
+        text-align: left;
+        color: $textSecondary;
+        justify-content: space-evenly;
+        border-radius: 8px;
+        padding: 4px 0;
+
+        &__description {
+            margin-right: 24px;
+            border-radius: 8px;
+            width: 400px;
+            padding: 12px 6px;
+            background-color: $block-bg;
+        }
+
+        &__file {
+            > a {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                color: $textSecondary;
+                text-decoration: none;
+
+                > div {
+                    margin-left: 8px;
+                    
+                    &:hover {
+                        border-bottom: 1px solid $textSecondary;
+                    }
+                }
+            }
+        }
+
+        &__date {
+            width: 100px;
+            text-align: center;
+        }
+
+        &__author {
+            width: 100px;
+            text-align: center;
+        }
+
+        &:hover {
+            background-color: $block-bg;
+        }
+    }
+}

@@ -12,7 +12,7 @@ export type RecordBookData = {
         attendance: number,
         exams: {
             nameOfCourse: string,
-            hours: number,
+            hourse: number,
             rating: number,
             rate: string,
             date: string,
@@ -21,7 +21,7 @@ export type RecordBookData = {
 
         offset: {
             nameOfCourse: string,
-            hours: number,
+            hourse: number,
             rating: number,
             rate: string,
             date: string,

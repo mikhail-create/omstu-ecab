@@ -1,5 +1,4 @@
 import axios from "axios";
-import { handleResponse } from "../_helpers/handle-response";
 
 export const fileService = {
     getUserFiles

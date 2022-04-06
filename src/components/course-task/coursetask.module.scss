@@ -1,0 +1,80 @@
+@import "../../styles/colors.scss";
+
+.task {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    min-height: 40px;
+    margin-bottom: 16px;
+    border-radius: 8px;
+    transition: .5s;
+
+    &__image {
+        width: 48px;
+        height: 48px;
+        font-family: "Montserrat";
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 300;
+        line-height: 16px;
+        letter-spacing: 0em;
+        text-align: left;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        background-color: $green;
+    }
+
+    &__name {
+        margin-left: 16px;
+        width: 650px;
+        font-family: "Montserrat";
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 16px;
+        letter-spacing: 0em;
+        text-align: left;
+    }
+
+    &__wrapper {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    &__authors {
+        margin-left: 16px;
+        width: 190px;
+        font-family: "Montserrat";
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 16px;
+        letter-spacing: 0em;
+        text-align: left;
+    }
+
+    &__amount {
+        width: 40px;
+        font-family: "Montserrat";
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 16px;
+        letter-spacing: 0em;
+        text-align: right;
+        margin-right: 48px;
+    }
+
+    &__about {
+        cursor: pointer;
+    }
+    
+    &:hover {
+        background-color: $block-bg;
+    }
+}

@@ -47,7 +47,7 @@ function StatsContainer() {
                 />
             </form>
             <LineChart
-                width={900}
+                width={850}
                 height={400}
                 data={
                     recordBook?.semesters.map((semester, index: number) => {

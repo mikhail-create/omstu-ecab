@@ -9,6 +9,8 @@ import NewsPage from './pages/news/NewsPage';
 import { useActions } from './hooks/useActions';
 import PersonalPage from './pages/personal/PersonalPage';
 import StudyPage from './pages/study/StudyPage';
+import RemotePage from './pages/remote/RemotePage';
+import TaskList from './components/task-list/TaskList';
 function App() {
     let { checkAuth } = useActions()
     useEffect(() => {
@@ -27,6 +29,8 @@ function App() {
                     <Route path='portfolio' element={<MainLayout component={<PortfolioPage />} />} />
                     <Route path='personal' element={<MainLayout component={<PersonalPage />} />} />
                     <Route path='study' element={<MainLayout component={<StudyPage />} />} />
+                    <Route path='remote' element={<MainLayout component={<RemotePage />} />} />
+                    <Route path='remote/:id' element={<MainLayout component={<TaskList />} />} />
                 </Routes>
             </BrowserRouter>
         </div>

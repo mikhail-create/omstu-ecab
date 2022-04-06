@@ -1,0 +1,42 @@
+@import "../../styles/colors.scss";
+
+.remote {
+    width: 100%;
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+
+    &__header {
+        font-family: "Montserrat";
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 19px;
+        letter-spacing: 0em;
+        text-align: left;
+        color: $textSecondary;
+        margin-bottom: 24px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-left: 96px;
+        margin-right: 16px;
+    }
+
+    &__title {
+        font-family: "Montserrat";
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 19px;
+        letter-spacing: 0em;
+        text-align: left;
+        color: $textSecondary;
+        margin-bottom: 24px;
+    }
+
+    &__description {
+        font-family: 'Roboto';
+        margin-bottom: 24px;
+    }
+}

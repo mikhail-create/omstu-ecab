@@ -1,11 +1,16 @@
 @import "../../styles/colors.scss";
 
 .study {
+    margin-top: 24px;
+
     &__title {
         font-family: "Montserrat";
         font-size: 18px;
-        font-weight: 500;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 19px;
+        letter-spacing: 0em;
+        text-align: left;
         color: $textSecondary;
-        margin-top: 24px;
     }
 }

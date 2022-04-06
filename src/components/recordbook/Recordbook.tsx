@@ -77,7 +77,7 @@ function Recordbook() {
                                                     index={index}
                                                     rate={exam.rate}
                                                     nameOfCourse={exam.nameOfCourse}
-                                                    hours={exam.hours}
+                                                    hours={exam.hourse}
                                                     rating={exam.rating}
                                                     date={exam.date}
                                                     teacher={exam.teacher}
@@ -125,7 +125,7 @@ function Recordbook() {
                                                     index={index}
                                                     rate={offset.rate}
                                                     nameOfCourse={offset.nameOfCourse}
-                                                    hours={offset.hours}
+                                                    hours={offset.hourse}
                                                     rating={offset.rating}
                                                     date={offset.date}
                                                     teacher={offset.teacher}

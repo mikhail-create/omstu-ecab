@@ -2,7 +2,6 @@ import { Field, Form, Formik } from 'formik'
 import React, { useEffect, useState } from 'react'
 import ProfileField from '../../components/profile-field/ProfileField'
 import SuccessButton from '../../components/success-button/SuccessButton'
-import { useTypedSelector } from '../../hooks/useTypedSelector'
 import { userService } from '../../_services/user.service'
 import styles from './personalpage.module.scss'
 

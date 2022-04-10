@@ -52,7 +52,7 @@ function RemotePage(props: RemotePageProps) {
     )
 }
 
-const mapStateToProps = (state: { group: string }) => {
+const mapStateToProps = (state: {group: string}) => {
     return {
         group: state.group
     };

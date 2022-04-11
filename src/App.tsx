@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter, Route, Router, Routes } from "react-router-dom";
+import openSocket from 'socket.io-client';
 import './App.scss';
 import MainLayout from './layouts/main/MainLayout';
 import LoginPage from './pages/login/LoginPage';
@@ -11,6 +12,8 @@ import PersonalPage from './pages/personal/PersonalPage';
 import StudyPage from './pages/study/StudyPage';
 import RemotePage from './pages/remote/RemotePage';
 import TaskList from './components/task-list/TaskList';
+import Chat from './pages/chat/Chat';
+
 function App() {
     let { checkAuth } = useActions()
     useEffect(() => {
@@ -32,6 +35,7 @@ function App() {
                         <Route path='study' element={<StudyPage />} />
                         <Route path='remote' element={<RemotePage />} />
                         <Route path='remote/:id' element={<TaskList />} />
+                        <Route path='chat' element={<Chat />} />
                     </Route>
                 </Routes >
             </BrowserRouter>

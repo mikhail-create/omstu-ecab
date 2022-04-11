@@ -11,7 +11,6 @@ interface NavButtonProps {
 
 function NavButton(props: NavButtonProps) {
     const path = props.path
-    const activeClassName = styles.active
     return (
         <div>
             <NavLink

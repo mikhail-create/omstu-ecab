@@ -49,8 +49,7 @@ function updateUser(
             name,
             group,
             fullData
-        }
-        )
+        })
     }
     return fetch(`http://localhost:5000/users/${email}`, requestOptions)
         .then(handleResponse)

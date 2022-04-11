@@ -3,7 +3,7 @@ import { MdMenu, MdMenuOpen } from 'react-icons/md';
 import { io } from 'socket.io-client';
 import ChatContact from '../../components/chat-contact/ChatContact';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
-import { ChatData } from '../../_types/chat-model';
+import { ChatData } from '../../_models/chat-model';
 import styles from './chat.module.scss'
 
 function Chat() {

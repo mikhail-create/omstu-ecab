@@ -1,12 +1,11 @@
 import axios, { AxiosResponse } from "axios";
-import { RecordBookData } from "../_types/recordbook-model";
+import { RecordBookData } from "../_models/recordbook-model";
 
 export const recordbooksServise = {
     getUserRecordBook
 }
 
-async function getUserRecordBook(): Promise<AxiosResponse<RecordBookData>> {
-    const email = localStorage.getItem('email')
+async function getUserRecordBook(email: string): Promise<AxiosResponse<RecordBookData>> {
     const url = `http://localhost:5000/recordbooks/${email}`
     let response = await axios.get(url)
     return response

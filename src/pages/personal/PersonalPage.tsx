@@ -2,11 +2,12 @@ import { Field, Form, Formik } from 'formik'
 import React, { useEffect, useState } from 'react'
 import ProfileField from '../../components/profile-field/ProfileField'
 import SuccessButton from '../../components/success-button/SuccessButton'
+import { UserData } from '../../_models/user-model'
 import { userService } from '../../_services/user.service'
 import styles from './personalpage.module.scss'
 
 function PersonalPage() {
-    const [user, setUser] = useState(Object)
+    const [user, setUser] = useState<UserData>(Object)
     const [userData, setUserData] = useState(Object)
     const [updateStaus, setUpdateStatus] = useState(String)
 
@@ -14,7 +15,7 @@ function PersonalPage() {
         userService.getUser().then(
             response => {
                 setUser(response)
-                setUserData(response.fullData[0] ? response.fullData[0] : "")
+                setUserData(response.fullData[0])
             }
         )
     }, [])
@@ -89,12 +90,12 @@ function PersonalPage() {
                         <ProfileField
                             title='Почта'
                             name='email'
-                            placeholder={user.email || ''}
+                            placeholder={user.email}
                         />
                         <ProfileField
                             title='Группа'
                             name='group'
-                            placeholder={user.group || ''}
+                            placeholder={user.group}
                         />
                     </div>
                     <div className={styles.personal_title}>
@@ -104,37 +105,37 @@ function PersonalPage() {
                         <ProfileField
                             title='Серия паспорта'
                             name='passportSeries'
-                            placeholder={userData.passportSeries || ''}
+                            placeholder={userData.passportSeries}
                         />
                         <ProfileField
                             title='Номер паспорта'
                             name='passportNumber'
-                            placeholder={userData.passportNumber || ''}
+                            placeholder={userData.passportNumber}
                         />
                         <ProfileField
                             title='Адрес'
                             name='adress'
-                            placeholder={userData.adress || ''}
+                            placeholder={userData.adress}
                         />
                         <ProfileField
                             title='Предыдущие образовние'
                             name='previousEducation'
-                            placeholder={userData.previousEducation || ''}
+                            placeholder={userData.previousEducation}
                         />
                         <ProfileField
                             title='Место предыдущего образования'
                             name='previousEducationPlace'
-                            placeholder={userData.previousEducationPlace || ''}
+                            placeholder={userData.previousEducationPlace}
                         />
                         <ProfileField
                             title='Год окончания'
                             name='previousEducationYear'
-                            placeholder={userData.previousEducationYear || ''}
+                            placeholder={userData.previousEducationYear}
                         />
                         <ProfileField
                             title='Телефон'
                             name='phone'
-                            placeholder={userData.phone || ''}
+                            placeholder={userData.phone}
                         />
                     </div>
                     <div className={styles.personal_title}>

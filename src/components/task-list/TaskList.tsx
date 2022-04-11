@@ -5,7 +5,7 @@ import { history } from '../../_helpers/history'
 import { MdArrowBack, MdFileDownload } from 'react-icons/md'
 import { v4 as uuidv4 } from 'uuid';
 import { taskService } from '../../_services/tasks.sevice'
-import { TaskData } from '../../_types/task.model'
+import { TaskData } from '../../_models/task.model'
 
 function TaskList() {
     const params = useParams()
@@ -14,6 +14,7 @@ function TaskList() {
     useEffect(() => {
         (async () => {
             setData((await taskService.getTasksById(params.id)))
+            
         })()
     }, [])
 

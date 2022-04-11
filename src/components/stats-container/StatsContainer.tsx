@@ -1,20 +1,21 @@
 import React, { useEffect, useState } from 'react'
 import { CartesianAxis, Label, Line, LineChart, Tooltip, XAxis, YAxis } from 'recharts'
 import { recordbooksServise } from '../../_services/recordbooks.service'
-import { RecordBookData } from '../../_types/recordbook-model'
+import { RecordBookData } from '../../_models/recordbook-model'
 import SwtichButton from '../switch-button/SwtichButton'
 import styles from './statscontainer.module.scss'
+import { useTypedSelector } from '../../hooks/useTypedSelector'
 
 function StatsContainer() {
     const [current, setCurrent] = useState("average")
     const [recordBook, setRecordBook] = useState<RecordBookData>()
+    const { userData } = useTypedSelector(state => state.auth)
 
     useEffect(() => {
         (async () => {
-            setRecordBook((await recordbooksServise.getUserRecordBook()).data)
+            setRecordBook((await recordbooksServise.getUserRecordBook(userData.email)).data)
         })()
     }, [])
-
 
 
     function radioHandler(event: React.ChangeEvent<HTMLInputElement>) {

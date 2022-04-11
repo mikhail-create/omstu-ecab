@@ -3,6 +3,7 @@ import { Field, Form, Formik } from 'formik'
 import React, { useEffect, useState } from 'react'
 import { MdClose } from 'react-icons/md'
 import { useTypedSelector } from '../../hooks/useTypedSelector'
+import { FileData } from '../../_models/file-model'
 import { fileService } from '../../_services/files.service'
 import CourseCard from '../course-card/CourseCard'
 import Dropzone from '../dropzone/Dropzone'
@@ -12,9 +13,10 @@ import styles from './courseslist.module.scss'
 
 function CoursesList() {
     const [isUploaded, setIsUploaded] = useState(false)
-    const [data, setData] = useState([])
+    const [data, setData] = useState<FileData[]>([])
     const [file, setFile] = useState(Object)
     const [fileName, setFileName] = useState(String)
+    const { userData } = useTypedSelector(state => state.auth)
 
     function uploadFile(file: object, name: string) {
         setFile(file)
@@ -26,12 +28,11 @@ function CoursesList() {
         setFileName('')
     }
 
-    const { userData } = useTypedSelector(state => state.auth)
-
     useEffect(() => {
-        fileService.getUserFiles().then(res => {
-            setData(res.data)
-        })
+        fileService.getUserFiles(userData.email)
+            .then(res => {
+                setData(res)
+            })
     }, [])
 
     return (
@@ -44,12 +45,11 @@ function CoursesList() {
                     formData.append('course', values.course)
                     formData.append('name', values.name)
                     formData.append('semester', values.semester)
-                    console.log()
                     axios.post(`http://localhost:5000/files/${userData.email}`, formData).then(res => {
                         setIsUploaded(true)
                         setTimeout(() => {
-                            fileService.getUserFiles().then(res => {
-                                setData(res.data)
+                            fileService.getUserFiles(userData.email).then(res => {
+                                setData(res)
                             })
                             setIsUploaded(false)
                         }, 2000)

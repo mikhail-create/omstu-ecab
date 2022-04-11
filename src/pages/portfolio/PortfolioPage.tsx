@@ -1,7 +1,6 @@
 import React from 'react'
 import CoursesList from '../../components/courses-list/CoursesList';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
-import { userService } from '../../_services/user.service';
 import styles from './portfoliopage.module.scss'
 
 function PortfolioPage() {

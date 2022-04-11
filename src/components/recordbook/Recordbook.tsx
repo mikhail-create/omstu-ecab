@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import { recordbooksServise } from '../../_services/recordbooks.service'
-import { RecordBookData } from '../../_types/recordbook-model'
+import { RecordBookData } from '../../_models/recordbook-model'
 import InfoCard from './InfoCard'
 import styles from './recordbook.module.scss'
 import RecordbookNav from './RecordbookNav'
 import TableRow from './TableRow'
+import { useTypedSelector } from '../../hooks/useTypedSelector'
 
 function Recordbook() {
     const [recordBook, setRecordBook] = useState<RecordBookData>()
     const [current, setCurrent] = useState(1)
+    const { userData } = useTypedSelector(state => state.auth)
 
     function setCourse(curr: number) {
         setCurrent(curr)
@@ -16,7 +18,7 @@ function Recordbook() {
 
     useEffect(() => {
         (async () => {
-            setRecordBook((await recordbooksServise.getUserRecordBook()).data)
+            setRecordBook((await recordbooksServise.getUserRecordBook(userData.email)).data)
         })()
     }, [])
 

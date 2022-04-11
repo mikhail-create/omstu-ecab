@@ -1,22 +1,20 @@
 import React, { useEffect, useState } from 'react'
-import { connect } from 'react-redux'
 import CourseTask from '../../components/course-task/CourseTask'
-import { AuthState } from '../../store/types/authTypes'
+import { useTypedSelector } from '../../hooks/useTypedSelector'
+import { TaskData } from '../../_models/task.model'
 import { taskService } from '../../_services/tasks.sevice'
 import styles from './remotepage.module.scss'
 
-interface RemotePageProps {
-    group: string
-}
+function RemotePage() {
+    const [taskList, setTaskList] = useState<TaskData[]>([])
 
-function RemotePage(props: RemotePageProps) {
-    const [taskList, setTaskList] = useState([])
+    let { userData } = useTypedSelector(state => state.auth)
 
     useEffect(() => {
-        taskService.getTasksByGroup(props.group).then(res => {
+        taskService.getTasksByGroup(userData.group).then(res => {
             setTaskList(res)
         })
-    }, [props.group])
+    }, [])
 
     return (
         <div className={styles.remote}>
@@ -52,11 +50,4 @@ function RemotePage(props: RemotePageProps) {
     )
 }
 
-const mapStateToProps = (state: { auth: AuthState }) => {
-    console.log(state.auth.userData.group);
-
-    return {
-        group: state.auth.userData.group
-    };
-};
-export default connect(mapStateToProps)(RemotePage);
+export default (RemotePage);

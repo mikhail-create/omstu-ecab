@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { MdMenu, MdMenuOpen } from 'react-icons/md';
-import { io } from 'socket.io-client';
+import { io, Socket } from 'socket.io-client';
 import ChatContact from '../../components/chat-contact/ChatContact';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { ChatData } from '../../_models/chat-model';
@@ -8,37 +8,54 @@ import styles from './chat.module.scss'
 
 function Chat() {
     const [message, setMessage] = useState("")
-    const [chat, setChat] = useState<ChatData>([])
+    const [chat, setChat] = useState<ChatData[]>([])
     let { userData } = useTypedSelector(state => state.auth)
+    const client = useRef<Socket>()
 
-    const socket = io('http://localhost:5000')
-
-    function getMessages() {
-        socket.on("message", ({ name, message }) => {
-            setChat([...chat, { name, message }])
-        })
-    }
+    // user: {
+    //     dialoges: {
+    //         rooms: {
+    //             id: user,
+    //             messages: {
+    //                 auhor: string,
+    //                 date: Date,
+    //                 text: string
+    //             }
+    //         }[]
+    //     }
+    // }
 
     useEffect(
         () => {
-            socket.connect()
-            getMessages();
+            const socket = io('http://localhost:5000');
+            socket.on('connect', () => console.log(`Client connected: ${socket.id}`));
+            socket.on('disconnect', (reason) =>
+                console.log(`Client disconnected: ${reason}`)
+            );
+            socket.on('connect_error', (reason) =>
+                console.log(`Client connect_error: ${reason}`)
+            );
+            socket.on("message", (res: ChatData) => {
+                console.log(res);
+
+                setChat(chat => [...chat, res])
+            })
+            client.current = socket;
             return () => {
                 socket.disconnect()
             }
-        }, [chat]
+        }, []
     )
 
     function onChange(event: React.ChangeEvent<HTMLTextAreaElement>) {
         const newValue = event.currentTarget.value;
         setMessage(newValue);
-        console.log(newValue);
     }
 
     function onMessageSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
         const name = userData.name;
-        socket.emit("message", { name, message })
+        client.current!.emit("message", { name, message })
         setMessage("")
     }
 
@@ -87,12 +104,11 @@ function Chat() {
                 <div className={styles.wrapper}>
                     <div className={styles.chat_content__body}>
                         {renderChat()}
-
                     </div>
                 </div>
                 <div className={styles.chat_content__control}>
                     <form onSubmit={onMessageSubmit}>
-                        <textarea placeholder='Введите сообщение' onChange={onChange} />
+                        <textarea placeholder='Введите сообщение' onChange={onChange} value={message} />
                         <button>Отправить</button>
                     </form>
                 </div>

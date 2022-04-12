@@ -13,6 +13,7 @@ import StudyPage from './pages/study/StudyPage';
 import RemotePage from './pages/remote/RemotePage';
 import TaskList from './components/task-list/TaskList';
 import Chat from './pages/chat/Chat';
+import AdminPage from './pages/admin/AdminPage';
 
 function App() {
     let { checkAuth } = useActions()
@@ -28,6 +29,7 @@ function App() {
                 <Routes>
                     <Route path='login' element={<LoginPage />} />
                     <Route path='registration' element={<RegistrationPage />} />
+                    <Route path='admin' element={<AdminPage />} />
                     <Route element={<MainLayout />} >
                         <Route path='/news' element={<NewsPage />} />
                         <Route path='/portfolio' element={<PortfolioPage />} />
@@ -35,7 +37,7 @@ function App() {
                         <Route path='study' element={<StudyPage />} />
                         <Route path='remote' element={<RemotePage />} />
                         <Route path='remote/:id' element={<TaskList />} />
-                        <Route path='chat' element={<Chat />} />
+                        <Route path='messages' element={<Chat />} />
                     </Route>
                 </Routes >
             </BrowserRouter>

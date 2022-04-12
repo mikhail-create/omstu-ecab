@@ -7,7 +7,23 @@ import { userService } from '../../_services/user.service'
 import styles from './personalpage.module.scss'
 
 function PersonalPage() {
-    const [user, setUser] = useState<UserData>(Object)
+    const [user, setUser] = useState<UserData>({
+        email: "",
+        name: "",
+        password: "",
+        group: "",
+        roles: [],
+        fullData: {
+            passportSeries: "",
+            passportNumber: "",
+            adress: "",
+            previousEducation: "",
+            previousEducationPlace: "",
+            previousEducationYear: "",
+            phone: ""
+        },
+        files: [],
+    })
     const [userData, setUserData] = useState(Object)
     const [updateStaus, setUpdateStatus] = useState(String)
 
@@ -15,7 +31,7 @@ function PersonalPage() {
         userService.getUser().then(
             response => {
                 setUser(response)
-                setUserData(response.fullData[0])
+                console.log(user.fullData);
             }
         )
     }, [])
@@ -47,24 +63,25 @@ function PersonalPage() {
                         (values.middleName ? values.middleName : user.name.split(' ')[2])
                     )
                     const fullData = {
-                        passportSeries: values.passportSeries ? values.passportSeries : userData.passportSeries,
-                        passportNumber: values.passportNumber ? values.passportNumber : userData.passportNumber,
-                        adress: values.adress ? values.adress : userData.adress,
-                        previousEducation: values.previousEducation ? values.previousEducation : userData.previousEducation,
-                        previousEducationPlace: values.previousEducationPlace ? values.previousEducationPlace : userData.previousEducationPlace,
-                        previousEducationYear: values.previousEducationYear ? values.previousEducationYear : userData.previousEducationYear,
-                        phone: values.phone ? values.phone : userData.phone
+                        passportSeries: values.passportSeries ? values.passportSeries : user.fullData.passportSeries,
+                        passportNumber: values.passportNumber ? values.passportNumber : user.fullData.passportNumber,
+                        adress: values.adress ? values.adress : user.fullData.adress,
+                        previousEducation: values.previousEducation ? values.previousEducation : user.fullData.previousEducation,
+                        previousEducationPlace: values.previousEducationPlace ? values.previousEducationPlace : user.fullData.previousEducationPlace,
+                        previousEducationYear: values.previousEducationYear ? values.previousEducationYear : user.fullData.previousEducationYear,
+                        phone: values.phone ? values.phone : user.fullData.phone
                     }
                     userService.updateUser(
                         values.email ? values.email : user.email,
                         fullName,
                         values.group ? values.group : user.group,
-                        [fullData]
+                        fullData
                     ).then(
                         response => {
                             setUpdateStatus("Данные успешно обновлены")
                             setTimeout(() => {
-                                setUserData(response.fullData[0] ? response.fullData[0] : "")
+                                setUpdateStatus("")
+                                setUser(response)
                             }, 2000)
                         }
                     )
@@ -105,37 +122,37 @@ function PersonalPage() {
                         <ProfileField
                             title='Серия паспорта'
                             name='passportSeries'
-                            placeholder={userData.passportSeries}
+                            placeholder={user.fullData.passportSeries}
                         />
                         <ProfileField
                             title='Номер паспорта'
                             name='passportNumber'
-                            placeholder={userData.passportNumber}
+                            placeholder={user.fullData.passportNumber}
                         />
                         <ProfileField
                             title='Адрес'
                             name='adress'
-                            placeholder={userData.adress}
+                            placeholder={user.fullData.adress}
                         />
                         <ProfileField
                             title='Предыдущие образовние'
                             name='previousEducation'
-                            placeholder={userData.previousEducation}
+                            placeholder={user.fullData.previousEducation}
                         />
                         <ProfileField
                             title='Место предыдущего образования'
                             name='previousEducationPlace'
-                            placeholder={userData.previousEducationPlace}
+                            placeholder={user.fullData.previousEducationPlace}
                         />
                         <ProfileField
                             title='Год окончания'
                             name='previousEducationYear'
-                            placeholder={userData.previousEducationYear}
+                            placeholder={user.fullData.previousEducationYear}
                         />
                         <ProfileField
                             title='Телефон'
                             name='phone'
-                            placeholder={userData.phone}
+                            placeholder={user.fullData.phone}
                         />
                     </div>
                     <div className={styles.personal_title}>

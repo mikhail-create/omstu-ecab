@@ -31,7 +31,7 @@ function updateUser(
     email: string,
     name: string,
     group: string,
-    fullData: [{
+    fullData: {
         passportSeries: string,
         passportNumber: string,
         adress: string,
@@ -39,7 +39,7 @@ function updateUser(
         previousEducationPlace: string,
         previousEducationYear: string,
         phone: string
-    }]
+    }
 ) {
     const requestOptions = {
         method: 'POST',

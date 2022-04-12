@@ -37,7 +37,8 @@ function App() {
                         <Route path='study' element={<StudyPage />} />
                         <Route path='remote' element={<RemotePage />} />
                         <Route path='remote/:id' element={<TaskList />} />
-                        <Route path='messages' element={<Chat />} />
+                        {/* <Route path='messages' element={<Chat />} /> */}
+                        <Route path='messages/:id' element={<Chat />} />
                     </Route>
                 </Routes >
             </BrowserRouter>

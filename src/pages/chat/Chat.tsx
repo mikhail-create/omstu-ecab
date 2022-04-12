@@ -1,5 +1,7 @@
+import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react'
 import { MdMenu, MdMenuOpen } from 'react-icons/md';
+import { useParams } from 'react-router-dom';
 import { io, Socket } from 'socket.io-client';
 import ChatContact from '../../components/chat-contact/ChatContact';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
@@ -7,11 +9,13 @@ import { ChatData } from '../../_models/chat-model';
 import styles from './chat.module.scss'
 
 function Chat() {
+    const params = useParams()
     const [message, setMessage] = useState("")
+    const [roomId, setRoomId] = useState("")
     const [chat, setChat] = useState<ChatData[]>([])
     let { userData } = useTypedSelector(state => state.auth)
     const client = useRef<Socket>()
-
+    
     // user: {
     //     dialoges: {
     //         rooms: {
@@ -27,8 +31,9 @@ function Chat() {
 
     useEffect(
         () => {
-            const socket = io('http://localhost:5000');
-            socket.on('connect', () => console.log(`Client connected: ${socket.id}`));
+            const socket = io(`http://localhost:5000/`);
+            // socket.on('connect', () => console.log(`Client connected: ${socket.id}`));
+            socket.on('connect', () => socket.emit('room', params.id));
             socket.on('disconnect', (reason) =>
                 console.log(`Client disconnected: ${reason}`)
             );
@@ -36,7 +41,7 @@ function Chat() {
                 console.log(`Client connect_error: ${reason}`)
             );
             socket.on("message", (res: ChatData) => {
-                console.log(res);
+                console.log("response: ", res);
 
                 setChat(chat => [...chat, res])
             })
@@ -55,7 +60,8 @@ function Chat() {
     function onMessageSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
         const name = userData.name;
-        client.current!.emit("message", { name, message })
+        const room_id = params.id
+        client.current!.emit("message", { name, message, room_id });
         setMessage("")
     }
 

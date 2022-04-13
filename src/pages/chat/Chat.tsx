@@ -4,6 +4,7 @@ import { MdMenu, MdMenuOpen } from 'react-icons/md';
 import { useParams } from 'react-router-dom';
 import { io, Socket } from 'socket.io-client';
 import ChatContact from '../../components/chat-contact/ChatContact';
+import ChatList from '../../components/chat-list/ChatList';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { ChatData } from '../../_models/chat-model';
 import styles from './chat.module.scss'
@@ -32,7 +33,6 @@ function Chat() {
     useEffect(
         () => {
             const socket = io(`http://localhost:5000/`);
-            // socket.on('connect', () => console.log(`Client connected: ${socket.id}`));
             socket.on('connect', () => socket.emit('room', params.id));
             socket.on('disconnect', (reason) =>
                 console.log(`Client disconnected: ${reason}`)
@@ -86,20 +86,7 @@ function Chat() {
 
     return (
         <div className={styles.chat}>
-            <div className={styles.chat_contacts}>
-                <div className={styles.chat_contacts__title}>
-                    <h2>Сообщения</h2>
-                </div>
-                <div className={styles.chat_contacts__list}>
-                    <ChatContact
-                        name="Василий Иванов"
-                        unreadedMessages={2}
-                    />
-                    <ChatContact
-                        name="Петр Петров"
-                    />
-                </div>
-            </div>
+            <ChatList />
             <div className={styles.chat_content}>
                 <div className={styles.chat_content__header}>
                     <ChatContact

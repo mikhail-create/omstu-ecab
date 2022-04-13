@@ -1,37 +1,8 @@
 @import "../../styles/colors.scss";
 
 .chat {
-    margin-top: 48px;
     display: flex;
     flex-direction: row;
-
-    &_contacts {
-        width: 240px;
-        margin-right: 28px;
-        display: flex;
-        flex-direction: column;
-        background-color: $block-bg;
-        border-radius: 16px;
-        padding: 24px;
-
-        &__title {
-            margin-bottom: 24px;
-
-            > h2 {
-                font-family: "Montserrat";
-                font-size: 16px;
-                font-weight: 600;
-                line-height: 19px;
-                letter-spacing: 0em;
-                text-align: left;
-            }
-        }
-
-        &__list {
-            display: flex;
-            flex-direction: column;
-        }
-    }
 
     &_content {
         border-radius: 16px;

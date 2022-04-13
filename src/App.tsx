@@ -14,6 +14,9 @@ import RemotePage from './pages/remote/RemotePage';
 import TaskList from './components/task-list/TaskList';
 import Chat from './pages/chat/Chat';
 import AdminPage from './pages/admin/AdminPage';
+import ChatContact from './components/chat-contact/ChatContact';
+import ChatList from './components/chat-list/ChatList';
+import ChatUnselectedPage from './pages/chat-unselected/ChatUnselectedPage';
 
 function App() {
     let { checkAuth } = useActions()
@@ -37,7 +40,7 @@ function App() {
                         <Route path='study' element={<StudyPage />} />
                         <Route path='remote' element={<RemotePage />} />
                         <Route path='remote/:id' element={<TaskList />} />
-                        {/* <Route path='messages' element={<Chat />} /> */}
+                        <Route path='messages' element={<ChatUnselectedPage />} />
                         <Route path='messages/:id' element={<Chat />} />
                     </Route>
                 </Routes >

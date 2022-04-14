@@ -53,6 +53,7 @@
         padding: 4px 0;
 
         &__description {
+            margin-left: 8px;
             margin-right: 24px;
             border-radius: 8px;
             width: 400px;
@@ -86,6 +87,15 @@
         &__author {
             width: 100px;
             text-align: center;
+        }
+
+        &__chat {
+            text-align: center;
+            cursor: pointer;
+
+            &:hover {
+                text-decoration: underline;
+            }
         }
 
         &:hover {

@@ -1,22 +1,21 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 import styles from './chat-contact.module.scss'
 
 interface ChatContactProps {
     name: string,
-    unreadedMessages?: number
+    room: string,
 }
 
 function ChatContact(props: ChatContactProps) {
+    const navigate = useNavigate();
     return (
-        <div className={styles.contact}>
+        <div className={styles.contact} onClick={() => {navigate(`/messages/${props.room}`)}}>
             <div>
                 🙂
             </div>
             <div>
-                {props.name}
-            </div>
-            <div className={props.unreadedMessages ? '' : styles.hiden}>
-                {props.unreadedMessages}
+                {props.name?.split(' ')[0]}  {props.name?.split(' ')[2]}
             </div>
         </div>
     )

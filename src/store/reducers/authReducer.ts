@@ -17,6 +17,8 @@ export const authReducer = (state = initialState, action: AuthAction): AuthState
     switch (action.type) {
         case AuthActionTypes.SIGN_IN_SUCCESS:
             localStorage.setItem('email', action.payload.userData.email)
+            console.log(action.payload);
+            
             return {
                 userData: {
                     name: action.payload.userData.name,

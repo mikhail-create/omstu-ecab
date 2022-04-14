@@ -10,25 +10,11 @@ import { ChatData } from '../../_models/chat-model';
 import styles from './chat.module.scss'
 
 function Chat() {
+    const { userData } = useTypedSelector(state => state.auth)
     const params = useParams()
     const [message, setMessage] = useState("")
-    const [roomId, setRoomId] = useState("")
     const [chat, setChat] = useState<ChatData[]>([])
-    let { userData } = useTypedSelector(state => state.auth)
     const client = useRef<Socket>()
-    
-    // user: {
-    //     dialoges: {
-    //         rooms: {
-    //             id: user,
-    //             messages: {
-    //                 auhor: string,
-    //                 date: Date,
-    //                 text: string
-    //             }
-    //         }[]
-    //     }
-    // }
 
     useEffect(
         () => {
@@ -91,6 +77,7 @@ function Chat() {
                 <div className={styles.chat_content__header}>
                     <ChatContact
                         name="Петр Петров"
+                        room=""
                     />
                     <MdMenu size={28} className={styles.menu} />
                 </div>

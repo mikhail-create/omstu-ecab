@@ -18,10 +18,14 @@ function Chat() {
 
     useEffect(
         () => {
+            const email = localStorage.getItem('email')
+            axios.get(`http://localhost:5000/chat/get/${email}/${params.id}`).then(res => {
+                setChat(res.data.messages)
+            })
             const socket = io(`http://localhost:5000/`);
             const data = {
                 room: params.id,
-                email: localStorage.getItem('email')
+                email: email
             }
             socket.on('connect', () => socket.emit('room', data));
             socket.on('disconnect', (reason) =>
@@ -31,8 +35,6 @@ function Chat() {
                 console.log(`Client connect_error: ${reason}`)
             );
             socket.on("message", (res: ChatData) => {
-                console.log("response: ", res);
-
                 setChat(chat => [...chat, res])
             })
             client.current = socket;
@@ -57,10 +59,10 @@ function Chat() {
     }
 
     const renderChat = () => {
-        return chat.map(({ name, message }, index) => (
-            <div className={name === userData.name ? '' : styles.message__right}>
+        return chat.map(({ author, message }, index) => (
+            <div className={author === userData.name ? '' : styles.message__right}>
                 {
-                    name === userData.name
+                    author === userData.name
                         ?
                         <div key={index} className={styles.message__own}>
                             {message}

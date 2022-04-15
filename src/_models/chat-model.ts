@@ -1,4 +1,4 @@
 export type ChatData = {
-    readonly name: string,
+    readonly author: string,
     readonly message: string
 }

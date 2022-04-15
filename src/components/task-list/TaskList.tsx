@@ -22,10 +22,14 @@ function TaskList() {
         })()
     }, [])
 
+    // CHANGE
+
     function redirectToDialoges(id: string) {
         axios.get(`http://localhost:5000/chat/getRoom/${userData?._id}/${id}`)
-            .then(res => {                
-                navigate(`/messages/${res.data.room_id}`)
+            .then(res => {           
+                let room_id = res.data.room_id   
+                setTimeout(() => {  navigate(`/messages/${room_id}`)
+                }, 0);
             })
     }
 

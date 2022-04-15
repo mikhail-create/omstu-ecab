@@ -19,7 +19,11 @@ function Chat() {
     useEffect(
         () => {
             const socket = io(`http://localhost:5000/`);
-            socket.on('connect', () => socket.emit('room', params.id));
+            const data = {
+                room: params.id,
+                email: localStorage.getItem('email')
+            }
+            socket.on('connect', () => socket.emit('room', data));
             socket.on('disconnect', (reason) =>
                 console.log(`Client disconnected: ${reason}`)
             );
@@ -46,8 +50,9 @@ function Chat() {
     function onMessageSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
         const name = userData.name;
+        const email = localStorage.getItem('email')
         const room_id = params.id
-        client.current!.emit("message", { name, message, room_id });
+        client.current!.emit("message", { email, name, message, room_id });
         setMessage("")
     }
 
